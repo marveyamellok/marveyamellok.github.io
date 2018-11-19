@@ -12,11 +12,17 @@ var player = {
   fallSpeed: 10,
   jumpPressed: false,
   jumpCount: 0,
-  jumpLength: 50,
-  jumpDefaultLength: 50,
+  jumpLength: 30,
   jumpHeight: 0,
   gravity: 0, 
   _let: false,
+  jumpPos: 0,
+
+  dx: 0,
+  dy: 0,
+
+  max: 10,
+  dif: 9.8,
 
   init: function(xPos,yPos){
     this.x = xPos,
@@ -33,8 +39,9 @@ var player = {
 
     if ( this.jumpPressed ){
       this.jumpCount++;
-      this.jumpHeight = 4 * this.jumpLength * Math.sin( Math.PI * this.jumpCount / this.jumpLength );
+      this.y = this.y - (this.jumpLength - this.jumpCount);
     }
+    
 
     if ( this.jumpCount > this.jumpLength ){
       this.stopJump();
@@ -44,7 +51,11 @@ var player = {
   },
 
   move: function(){
+
+    this.y += this.dy;
+
     if(mc.isActionActive("up")){
+      // if (this.jumpPressed = true) return;
       this.jumpPressed = true;
     };
 
@@ -92,20 +103,28 @@ var player = {
           this.y = item.y - this.height;
         } 
 
+
         if (collisionWalls(this.x, yPos, this.width, this.height, item.x, item.y, item.width, item.height)){ //////препятствие справа
-          // console.log("left/right");
           this.dx *= -1;
           this.x += (this.dx * this.speed);
         }
       }
 
     } else {
-      // console.log(this.jumpPressed, this.jumpCount, this.jumpHeight, this.jumpLength)
-      if (this.jumpCount == 0){ //////препятствий нет и мы не прыгаем
-        this.gravity++;
-        this.dy = 1;
-        this.y += (this.dy * this.fallSpeed + this.gravity / 10); 
-      }
+
+        this.max = 10;
+        this.dif = 9.8;
+
+        if(this.dy > this.max){
+          this.dy = this.dy / this.max;
+        }
+
+        // this.dy += this.dif <= this.max ? this.dif : 0;
+
+        if (this.dif >= this.max){
+          this.dif = 0;
+        }
+        this.dy += this.dif;
     }
   }
 }

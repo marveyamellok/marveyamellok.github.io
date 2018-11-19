@@ -74,16 +74,43 @@ function collision(x1, y1, xx1, yy1, x2, y2, xx2, yy2){
 
 
 
+// function collisionTop(y1, y2, yy2){
+//   return (y1 >= y2 && y1 <= y2 + yy2)
+// }
+
+// function collisionBottom(y1, yy1, y2, yy2){
+//   return (y1 + yy2 <= y2 + yy2 && y1 + yy2 >= y2)
+// }
+
+// function collisionWalls(x1, y1, xx1, yy1, x2, y2, xx2, yy2){
+//   return (
+//     ((x1 + xx1 <= x2 + xx2 && x1 + xx1 >= x2) || (x1 >= x2 && x1 <= x2 + xx2)) && !(y1 + yy2 <= y2 + yy2 && y1 + yy2 >= y2)
+//   )
+// }
+
 function collisionTop(y1, y2, yy2){
-  return (y1 >= y2 && y1 <= y2 + yy2)
+  return (Math.ceil(y1) >= y2 && Math.ceil(y1) <= y2 + yy2)
 }
 
 function collisionBottom(y1, yy1, y2, yy2){
-  return (y1 + yy2 <= y2 + yy2 && y1 + yy2 >= y2)
+  return (Math.ceil(y1) + yy2 <= y2 + yy2 && Math.ceil(y1) + yy2 >= y2)
+}
+
+function collisionBottomRight(x1, y1, xx1, yy1, x2, y2, xx2, yy2){
+  return (Math.ceil(y1) + yy2 <= y2 + yy2 && Math.ceil(y1) + yy2 >= y2 &&
+      (Math.ceil(x1) + Math.ceil(xx1) > x2 + xx2) && (Math.ceil(x1) + (Math.ceil(xx1) / 2) > x2 + xx2) &&
+      (Math.ceil(x1) > x2) && (Math.ceil(x1) < x2 + xx2) && (Math.ceil(x1) > x2 + (xx2 / 2))
+    )
 }
 
 function collisionWalls(x1, y1, xx1, yy1, x2, y2, xx2, yy2){
   return (
-    ((x1 + xx1 <= x2 + xx2 && x1 + xx1 >= x2) || (x1 >= x2 && x1 <= x2 + xx2)) && !(y1 + yy2 <= y2 + yy2 && y1 + yy2 >= y2)
+    ((Math.ceil(x1) + Math.ceil(xx1) <= x2 + xx2 && Math.ceil(x1) + Math.ceil(xx1) >= x2) || (Math.ceil(x1) >= x2 && Math.ceil(x1) <= x2 + xx2)) && !(Math.ceil(y1) + yy2 <= y2 + yy2 && Math.ceil(y1) + yy2 >= y2)
   )
 }
+
+// function collisionBottomHalf(x1, xx1, x2, xx2){
+//  return ((Math.ceil(x1) < x2 && ((Math.ceil(x1) + Math.ceil(xx1)) / 2) <= x2 && (Math.ceil(x1) + Math.ceil(xx1) <= x2 + xx2)) ||
+//     (Math.ceil(x1) > x2 &&  Math.ceil(x1) + Math.ceil(xx1) > (x2 + xx2)/2 && Math.ceil(x1) < Math.ceil(x1)  + Math.ceil(xx1) )
+//   )
+// }
