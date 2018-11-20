@@ -136,7 +136,24 @@ var player = {
 
         this.dy += this.dif;
     }
+  },
+
+  getSouls: function(){
+    var souls = [];
+
+    for (var i in level.souls){
+      var soul = level.souls[i];
+      var yPos = this.y - this.jumpHeight;
+
+
+      if (isCollision(this.x, yPos, this.width, this.height, soul.x, soul.y, soul.width, soul.height)){    
+        // soul.remove();
+        level.souls.splice(i, 1);
+      }
+    } 
+
   }
+
 }
 
 

@@ -17,6 +17,7 @@ $(function() {
     player.draw();
     player.move();
     player.collision();
+    player.getSouls();
   }
 
   startGame(game);
