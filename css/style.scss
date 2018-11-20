@@ -2,14 +2,110 @@
 
 body{
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 769px) { 
+    display: block; 
+  }
 }
 
 canvas{
   background-repeat: no-repeat;
   background-position: center;
   background-origin: contain;
+  position: relative;
+  display: block; 
+  margin: auto;
+  @media screen and (min-width: 769px) {
+  }
 }
+
+// .game{
+//   @media screen and (min-width: 769px) { 
+//     border: 10px solid #747498;
+//     text-align: center;
+//     margin-bottom: 12vw;
+//   }
+// }
+
+// .control{
+//   @media screen and (min-width: 769px) { 
+//     border: 10px solid #747498;
+//     text-align: center;
+//     padding: 30px 15px;
+//   }
+// }
+
+// .control__btn{
+//   @media screen and (min-width: 769px) {
+//     position: relative; 
+//     display: inline-block;
+//     margin: 0 8vw;
+//     width: 20vw;
+//     height: 20vw;
+//     border-radius: 50%;
+//     border: 10px solid black;
+//     transition: background-color 0.3s;
+
+//     &:after{
+//       position: absolute;
+//       content: "";
+//       width: 7vw;
+//       height: 7vw;
+//       border-top: 10px solid black;
+//       border-left: 10px solid black;
+//     }
+
+//     &:hover{
+//       background-color: #99a4b1;
+//     }
+//   }
+// }
+
+// .control__btn_up{
+//   @media screen and (min-width: 769px) {
+//   display: block; 
+//   margin: auto;
+//     &:after{
+//       top: 4vw;
+//       bottom: 0;
+//       left: 0;
+//       right: 0;
+//       margin: auto;
+//       transform: rotate(45deg);
+//     }
+//   }
+// }
+
+
+// .control__btn_left{
+//   @media screen and (min-width: 769px) { 
+//     &:after{
+//       top: 0;
+//       bottom: 0;
+//       left: 4vw;
+//       right: 0;
+//       margin: auto;
+//       transform: rotate(-45deg);
+//     }
+//   }
+// }
+
+// .control__btn_right{
+//   @media screen and (min-width: 769px) { 
+//     &:after{
+//       top: 0;
+//       bottom: 0;
+//       left: 0;
+//       right: 4vw;
+//       margin: auto;
+//       transform: rotate(135deg);
+//     }
+//   }
+// }

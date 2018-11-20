@@ -10,6 +10,8 @@ $(function() {
     // fillAll("#f8da9d");
     clearAll();
     level.draw();
+    level.drawLava();
+    level.drawSoul();
     level.camera();
 
     player.draw();
