@@ -1,4 +1,5 @@
 var canvas, ctx, width, heigth; 
+var rightMove = player.speed;
 
 var init = function(){
   canvas = document.getElementById("canvas");
@@ -16,8 +17,10 @@ var fillAll = function(color){
   ctx.fillRect(0, 0, width, height)
 };
 
+
 var clearAll = function(){
-  ctx.clearRect(0, 0, width, height)
+  ctx.clearRect(0, 0, width, height);
+  canvas.style.backgroundImage = 'url("images/bg4.jpg")';
 };
 
 var drawRect = function(x, y, w, h, color){
@@ -89,7 +92,7 @@ function collision(x1, y1, xx1, yy1, x2, y2, xx2, yy2){
 // }
 
 function collisionTop(y1, y2, yy2){
-  return (Math.ceil(y1) >= y2 && Math.ceil(y1) <= y2 + yy2)
+  return (Math.round(y1) >= y2 && Math.round(y1) <= y2 + yy2)
 }
 
 function collisionBottom(y1, yy1, y2, yy2){

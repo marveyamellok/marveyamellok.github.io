@@ -1,11 +1,13 @@
 
+  console.log("Dsfsdf");
 
   init();
 
-  var playerX = width / 2; 
+  var playerX = width / 2 + 10; 
   var playerY = height - player.r;
   player.init(playerX, playerY);
   labyrinth.create(map);
+  console.log(playerX);
 
   var game = function(){
     fillAll("#f8da9d");
@@ -18,4 +20,4 @@
     player.collision();
   }
 
-  startGame(game);
+  startGame(game)
