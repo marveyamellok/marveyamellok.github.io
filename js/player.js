@@ -18,6 +18,9 @@ var player = {
   _let: false,
   jumpPos: 0,
   jump: false,
+  soulCount: 0,
+  loseCount: 0,
+  isLose: false,
 
   dx: 0,
   dy: 0,
@@ -55,6 +58,7 @@ var player = {
   move: function(){
 
     this.y += this.dy;
+    if (this.isLose == true) return;
 
     if(mc.isActionActive("up")){
       if (this.jump == true) return;
@@ -139,18 +143,52 @@ var player = {
   },
 
   getSouls: function(){
-    var souls = [];
 
     for (var i in level.souls){
       var soul = level.souls[i];
       var yPos = this.y - this.jumpHeight;
 
-
       if (isCollision(this.x, yPos, this.width, this.height, soul.x, soul.y, soul.width, soul.height)){    
-        // soul.remove();
+        this.soulCount++;
         level.souls.splice(i, 1);
       }
     } 
+
+  },
+
+  fallIntoLava: function(){
+
+    for (var i in level.lava){
+      var lava = level.lava[i];
+      var yPos = this.y - this.jumpHeight;
+
+      if (isCollision(this.x, yPos, this.width, this.height, lava.x, lava.y, lava.width, lava.height)){
+        this.isLose = true;
+        info.write("You lose", ((width / 2) - 120), ((height / 2) + 20), "70px");
+      }
+
+      if (this.isLose){
+        info.write("You burn", ((width / 2) - 120), ((height / 2) + 20), "70px"); 
+      }
+    } 
+
+  },
+
+
+  lose: function(max){
+
+    if (this.loseCount == max){
+      this.isLose = true;
+      info.write("You lose", ((width / 2) - 120), ((height / 2) + 20), "70px");
+      return;
+    }
+
+    if (this.isLose == false && this.soulCount == souls){
+      info.write("You get all Souls!!!", ((width / 2) - 270), ((height / 2) + 20), "70px");
+      return;
+    }
+
+    this.loseCount++;
 
   }
 

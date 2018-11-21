@@ -21,7 +21,7 @@ var fillAll = function(color){
 
 var clearAll = function(){
   ctx.clearRect(0, 0, width, height);
-  canvas.style.backgroundImage = 'url("images/bg4.jpg")';
+  canvas.style.backgroundImage = 'url("images/bg5.jpg")';
 };
 
 var drawRect = function(x, y, w, h, color){

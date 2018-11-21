@@ -1,4 +1,5 @@
 // $(function(){
+  var souls;
 
   var Block = function (x, y, w, h, color) {
     this.x = x;
@@ -26,7 +27,7 @@
       [1,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1],
       [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -46,20 +47,11 @@
     nodes: [],
     lava: [],
     souls: [],
+    moveCount: 0,
 
-    add: function(x, y, w, h, c){
+    add: function(x, y, w, h, c, arr){
       var tmp = new Block(x, y, w, h, c);
-      this.nodes.push(tmp);
-    },
-
-    addLava: function(x, y, w, h, c){
-      var tmp = new Block(x, y, w, h, c);
-      this.lava.push(tmp);
-    },
-
-    addSoul: function(x, y, w, h, c){
-      var tmp = new Block(x, y, w, h, c);
-      this.souls.push(tmp);
+      arr.push(tmp);
     },
 
     create: function(map){
@@ -72,42 +64,54 @@
           var dx = t2*(map.width);
           var dy = t1 * (map.height);
           if (tile == 1){
-            this.add(dx, dy, map.width, map.height, map.color)
+            this.add(dx, dy, map.width, map.height, map.color, this.nodes)
           }
 
           if (tile == 2){
-            this.addLava(dx, dy, map.width, map.height, map.color)
+            this.add(dx, dy, map.width, map.height, map.color, this.lava)
           }
 
-          if (tile == "3"){
-            this.addSoul(dx, dy, map.width, map.height, map.color)
+          if (tile == 3){
+            this.add(dx, dy, map.width, map.height, map.color, this.souls)
           }
         }
       }
+      souls = this.souls.length;
     }, 
 
     draw: function(){
+
       for (en in this.nodes){
         if (this.right) this.nodes[en].x = this.nodes[en].x - rightMove;
         if (this.left) this.nodes[en].x = this.nodes[en].x + rightMove;
         this.nodes[en].draw("grass");
-      }
-    },
+      };
 
-    drawLava: function(){
       for (en in this.lava){
         if (this.right) this.lava[en].x = this.lava[en].x - rightMove;
         if (this.left) this.lava[en].x = this.lava[en].x + rightMove;
         this.lava[en].draw("lava");
-      }
-    },
+      };
 
-    drawSoul: function(){
       for (en in this.souls){
         if (this.right) this.souls[en].x = this.souls[en].x - rightMove;
         if (this.left) this.souls[en].x = this.souls[en].x + rightMove;
         this.souls[en].draw("soul");
       }
+    },
+
+    soulsMove: function(){
+      // for (en in this.souls){
+
+      //   if (this.moveCount > 25) {
+      //     this.souls[en].y += 1;
+      //     return;
+      //   }
+      //   this.souls[en].y -= this.moveCount;
+      //   this.moveCount++;
+      // }
+
+      // console.log(this.souls[en].y)
     },
 
 
