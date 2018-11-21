@@ -164,7 +164,6 @@ var player = {
 
       if (isCollision(this.x, yPos, this.width, this.height, lava.x, lava.y, lava.width, lava.height)){
         this.isLose = true;
-        info.write("You lose", ((width / 2) - 120), ((height / 2) + 20), "70px");
       }
 
       if (this.isLose){
