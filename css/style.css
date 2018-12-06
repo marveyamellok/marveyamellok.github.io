@@ -28,3 +28,76 @@ canvas {
   position: relative;
   display: block;
   margin: auto; }
+
+.control__again {
+  height: 60px;
+  margin: 30px auto 0;
+  position: relative;
+  width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s; }
+
+.submit {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #273439;
+  border: 0;
+  border-radius: 15px;
+  cursor: pointer;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: 'Comic Sans MS', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  height: 60px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  -webkit-transition: background 300ms, opacity 500ms 800ms;
+  -o-transition: background 300ms, opacity 500ms 800ms;
+  transition: background 300ms, opacity 500ms 800ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 200px; }
+
+.submit:hover {
+  background: #0e232e; }
+
+svg {
+  left: -200px;
+  position: absolute;
+  top: -60px;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1); }
+
+path {
+  fill: #0e232e;
+  stroke: #0e232e;
+  -webkit-transform-origin: 50%;
+  -ms-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition: fill 1200ms, stroke 1200ms, -webkit-transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045);
+  transition: fill 1200ms, stroke 1200ms, -webkit-transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045);
+  -o-transition: transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045), fill 1200ms, stroke 1200ms;
+  transition: transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045), fill 1200ms, stroke 1200ms;
+  transition: transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045), fill 1200ms, stroke 1200ms, -webkit-transform 1200ms cubic-bezier(0.6, -0.48, 0.735, 0.045); }
+
+.refresh {
+  bottom: 10px;
+  cursor: pointer;
+  font-weight: 400;
+  left: auto;
+  position: absolute;
+  right: 30px;
+  top: auto;
+  width: 50px; }

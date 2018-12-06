@@ -21,6 +21,8 @@ var player = {
   soulCount: 0,
   loseCount: 0,
   isLose: false,
+  isWin: false,
+  lifes: 3,
 
   dx: 0,
   dy: 0,
@@ -102,7 +104,6 @@ var player = {
         var top = this.y;
 
         if (collisionTop(this.y, item.y, item.height )){ //////препятствие сверху
-          // this.y = item.y + item.height;
           this.dy = 3;
           this.stopJump();
         }
@@ -114,8 +115,8 @@ var player = {
 
 
         if (collisionWalls(this.x, yPos, this.width, this.height, item.x, item.y, item.width, item.height)){ //////препятствие справа
-          this.right = false;
-          this.left = false;
+          // this.right = false;
+          // this.left = false;
           this.dx *= -1;
           this.x += (this.dx * this.speed);
         }
@@ -123,22 +124,20 @@ var player = {
 
     } else {
 
-        this.jump = true;
+      this.jump = true;
 
-        this.max = 10;
-        this.dif = 9.8;
+      this.max = 10;
+      this.dif = 9.8;
 
-        if(this.dy > this.max){
-          this.dy = this.dy / this.max;
-        }
+      if(this.dy > this.max){
+        this.dy = this.dy / this.max;
+      }
 
-        // this.dy += this.dif <= this.max ? this.dif : 0;
+      if (this.dif >= this.max){
+        this.dif = 0;
+      }
 
-        if (this.dif >= this.max){
-          this.dif = 0;
-        }
-
-        this.dy += this.dif;
+      this.dy += this.dif;
     }
   },
 
@@ -165,30 +164,36 @@ var player = {
       if (isCollision(this.x, yPos, this.width, this.height, lava.x, lava.y, lava.width, lava.height)){
         this.isLose = true;
       }
-
-      if (this.isLose){
-        info.write("You burn", ((width / 2) - 120), ((height / 2) + 20), "70px"); 
-      }
     } 
 
   },
 
 
   lose: function(max){
-
     if (this.loseCount == max){
       this.isLose = true;
-      info.write("You lose", ((width / 2) - 120), ((height / 2) + 20), "70px");
+      // this.lifes--;
       return;
     }
 
     if (this.isLose == false && this.soulCount == souls){
-      info.write("You get all Souls!!!", ((width / 2) - 270), ((height / 2) + 20), "70px");
+      this.isWin = true;
+      // this.lifes--;
       return;
     }
 
     this.loseCount++;
+  },
 
+  result: function(){
+    if (this.isLose){
+      this.lifes--;
+      info.write("You lose", ((width / 2) - 120), ((height / 2) + 20), "70px");
+      $(".control__again").css({"opacity": "1", "pointer-events": "all"})
+    } 
+    if(this.isWin){
+      info.write("You win", ((width / 2) - 120), ((height / 2) + 20), "70px");
+    }
   }
 
 }
@@ -196,15 +201,15 @@ var player = {
 
 
 
-        // if (collisionTop(yPos, item.y, item.height)){ //////препятствие сверху
-        //   console.log("top");
-        //   this.dy = 1;
-        //   this.stopJump();
+// if (collisionTop(yPos, item.y, item.height)){ //////препятствие сверху
+//   console.log("top");
+//   this.dy = 1;
+//   this.stopJump();
 
-        // }
+// }
 
-        // if (collisionBottom(yPos, this.height, item.y, item.height)){ //////препятствие снизу
-        //   console.log("bottom");
-        //   this.y = item.y - this.height;
-        // } 
+// if (collisionBottom(yPos, this.height, item.y, item.height)){ //////препятствие снизу
+//   console.log("bottom");
+//   this.y = item.y - this.height;
+// } 
         

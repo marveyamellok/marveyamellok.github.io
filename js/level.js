@@ -30,11 +30,11 @@
       [1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1],
-      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,0,0,0,0,0,4,0,1,0,0,1,0,1,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ]
   };
@@ -47,7 +47,13 @@
     nodes: [],
     lava: [],
     souls: [],
+    enemy: [],
     moveCount: 0,
+    moveUp: true,
+    enemyMoveCount: 0,
+    moveRight: true,
+    _let: false,
+    enemyDx: 1,
 
     add: function(x, y, w, h, c, arr){
       var tmp = new Block(x, y, w, h, c);
@@ -74,8 +80,13 @@
           if (tile == 3){
             this.add(dx, dy, map.width, map.height, map.color, this.souls)
           }
+
+          if (tile == 4){
+            this.add(dx, dy, map.width, map.height, map.color, this.enemy)
+          }
         }
       }
+
       souls = this.souls.length;
     }, 
 
@@ -98,20 +109,101 @@
         if (this.left) this.souls[en].x = this.souls[en].x + rightMove;
         this.souls[en].draw("soul");
       }
+
+      for (en in this.enemy){
+        if (this.right) this.enemy[en].x = this.enemy[en].x - rightMove;
+        if (this.left) this.enemy[en].x = this.enemy[en].x + rightMove;
+        this.enemy[en].draw("enemy");
+      }
     },
 
     soulsMove: function(){
-      // for (en in this.souls){
 
-      //   if (this.moveCount > 25) {
-      //     this.souls[en].y += 1;
-      //     return;
+      if (this.moveRight){
+        this.enemyMoveCount++;
+        for (en in this.enemy){
+          this.enemy[en].x -= (1 + this.enemyMoveCount / 100);
+        }
+
+      } else {
+        this.enemyMoveCount--
+        for (en in this.enemy){
+          this.enemy[en].x += (1 + this.enemyMoveCount / 100);
+        }
+
+      }
+
+      if (this.enemyMoveCount == 0){
+        this.moveRight = true;
+      }
+
+      if (this.enemyMoveCount == 150){
+        this.moveRight = false;
+      }
+
+      // var collisions = [];
+      // this._let = false;
+
+      // for (var i in level.nodes){
+      //   var wall = level.nodes[i];
+
+      //   for (var j in this.enemy){
+      //     var item = this.enemy[j];
+
+      //     if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
+      //       collisions.push(wall);
+      //       console.log("dfhgvdjvb")
+      //       // this._let = true;
+
+      //       if (collisionWalls(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){ //////препятствие справа
+      //         this.moveRight = false;
+      //       }
+      //     }
       //   }
-      //   this.souls[en].y -= this.moveCount;
-      //   this.moveCount++;
+      // } 
+
+      // if(!this._let) {
+
+      //   var max = 10;
+      //   var dif = 9.8;
+
+      //   if(this.dy > max){
+      //     this.dy = this.dy / max;
+      //   }
+
+      //   if (dif >= max){
+      //     dif = 0;
+      //   }
+
+      //   this.dy += dif;
       // }
 
-      // console.log(this.souls[en].y)
+    },
+
+    enemyMove: function(){
+
+      if (this.moveUp){
+        this.moveCount++;
+        for (en in this.souls){
+          this.souls[en].y -= (0.2 + this.moveCount / 100);
+        }
+
+      } else {
+        this.moveCount--
+        for (en in this.souls){
+          this.souls[en].y += (0.2 + this.moveCount / 100);
+        }
+
+      }
+
+      if (this.moveCount == 0){
+        this.moveUp = true;
+      }
+
+      if (this.moveCount == 30){
+        this.moveUp = false;
+      }
+
     },
 
 
