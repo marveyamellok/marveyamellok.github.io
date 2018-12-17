@@ -5,6 +5,7 @@ $(function() {
   var playerY = height - (height / 4) * 3;
   player.init(playerX, playerY);
   level.create(map);
+  // enemy.create(map);
   info.life();
 
   $(".control__again").on("click", function(){

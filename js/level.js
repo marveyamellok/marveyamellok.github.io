@@ -15,11 +15,29 @@
     }
   };
 
+  var Enemy = function (x, y, w, h, color, moveRight, _let, enemyVector) {
+    this.x = x;
+    this.y = y;
+    this.width = w;
+    this.height = h;
+    this.color = color;
+    this.moveRight = true;
+    this._let = true;
+    this.enemyVector = 0.008;
+  };
+
+  Enemy.prototype = {
+    draw: function(image){
+      drawImage(this.x, this.y, this.width, this.height, image);
+    }
+  };
+
 
   var map = {
     color: "#448a5a",
     width: 40,
     height: 40,
+    widthEnemy: 40,
     level: [
       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -30,11 +48,11 @@
       [1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1],
-      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,0,0,0,0,0,4,0,1,0,0,1,0,1,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,4,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ]
   };
@@ -48,15 +66,21 @@
     lava: [],
     souls: [],
     enemy: [],
+    enemyCollisions: [],
     moveCount: 0,
     moveUp: true,
-    enemyMoveCount: 0,
     moveRight: true,
+    enemyVector: 0.008,
     _let: false,
     enemyDx: 1,
 
     add: function(x, y, w, h, c, arr){
       var tmp = new Block(x, y, w, h, c);
+      arr.push(tmp);
+    },
+
+    addEnemy: function(x, y, w, h, c, arr, moveRight, _let, enemyVector){
+      var tmp = new Enemy(x, y, w, h, c, moveRight, _let, enemyVector);
       arr.push(tmp);
     },
 
@@ -82,7 +106,7 @@
           }
 
           if (tile == 4){
-            this.add(dx, dy, map.width, map.height, map.color, this.enemy)
+            this.addEnemy(dx, dy, map.widthEnemy, map.widthEnemy, map.color, this.enemy, true, true, 0.008)
           }
         }
       }
@@ -117,70 +141,37 @@
       }
     },
 
-    soulsMove: function(){
+    enemyMove: function(){
 
-      if (this.moveRight){
-        this.enemyMoveCount++;
-        for (en in this.enemy){
-          this.enemy[en].x -= (1 + this.enemyMoveCount / 100);
+
+      for (var i in level.nodes){
+        var wall = level.nodes[i];
+
+        for (var j in this.enemy){
+          var item = this.enemy[j];
+
+
+          if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
+            this.enemy[j]._let = true;
+
+            if (collisionWallsEnemy(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){ //////препятствие справа
+              this.enemy[j].enemyVector *= -1;
+            }
+          }
+
+            if (this.enemy[j]._let){
+              this.enemy[j].enemyVector *= -1;
+              this.enemy[j]._let = false;
+            }
+
+          this.enemy[j].x += this.enemy[j].enemyVector; 
         }
+      } 
 
-      } else {
-        this.enemyMoveCount--
-        for (en in this.enemy){
-          this.enemy[en].x += (1 + this.enemyMoveCount / 100);
-        }
-
-      }
-
-      if (this.enemyMoveCount == 0){
-        this.moveRight = true;
-      }
-
-      if (this.enemyMoveCount == 150){
-        this.moveRight = false;
-      }
-
-      // var collisions = [];
-      // this._let = false;
-
-      // for (var i in level.nodes){
-      //   var wall = level.nodes[i];
-
-      //   for (var j in this.enemy){
-      //     var item = this.enemy[j];
-
-      //     if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
-      //       collisions.push(wall);
-      //       console.log("dfhgvdjvb")
-      //       // this._let = true;
-
-      //       if (collisionWalls(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){ //////препятствие справа
-      //         this.moveRight = false;
-      //       }
-      //     }
-      //   }
-      // } 
-
-      // if(!this._let) {
-
-      //   var max = 10;
-      //   var dif = 9.8;
-
-      //   if(this.dy > max){
-      //     this.dy = this.dy / max;
-      //   }
-
-      //   if (dif >= max){
-      //     dif = 0;
-      //   }
-
-      //   this.dy += dif;
-      // }
 
     },
 
-    enemyMove: function(){
+    soulsMove: function(){
 
       if (this.moveUp){
         this.moveCount++;
@@ -223,12 +214,5 @@
       } else {
         this.left = false;
       }
-
-      // console.log(this.lava)
     }
   }
-
-
-
-
-// });

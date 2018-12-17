@@ -115,8 +115,6 @@ var player = {
 
 
         if (collisionWalls(this.x, yPos, this.width, this.height, item.x, item.y, item.width, item.height)){ //////препятствие справа
-          // this.right = false;
-          // this.left = false;
           this.dx *= -1;
           this.x += (this.dx * this.speed);
         }
