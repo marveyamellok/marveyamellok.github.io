@@ -62,3 +62,71 @@
 //     }, 500)
 //   })
 // })
+
+
+      // var collisions = [];
+
+      // for (var i in level.nodes){
+      //   var wall = level.nodes[i];
+
+      //   for (var j in this.enemy){
+      //     var item = this.enemy[j];
+
+      //     if (this.enemy[j].moveRight){
+      //       this.enemyVector = 0.008;
+      //     } else {
+      //       this.enemyVector = -0.008;
+      //     }
+
+      //     if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
+      //       collisions.push(wall);
+      //       this.enemy[j]._let = true;
+
+      //       if(collisionWallsRight(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
+      //         this.enemy[j].moveRight = false;
+      //         console.log("right");
+      //       }
+
+      //       if(collisionWallsLeft(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
+      //         this.enemy[j].moveRight = true;
+      //         console.log("left");
+      //       }
+      //     } 
+
+      //     // console.log(this.enemy[j]._let)
+      //       this.enemy[j].x += this.enemyVector;
+      //   }
+      // } 
+      //     // console.log(this.enemy[j]._let)
+
+      // // if(!this._let) {
+      // //   this.enemyVector *= -1;
+      // // }
+
+      // for (var i in level.nodes){
+      //   var wall = level.nodes[i];
+
+      //   for (var j in this.enemy){
+      //     var item = this.enemy[j];
+
+      //     if (this.enemy[j].moveRight){
+      //       this.enemyVector = 0.008;
+      //     } else {
+      //       this.enemyVector = -0.008;
+      //     }
+
+      //     if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){    
+      //       (this.enemy[j].enemyCollisions).push(wall);
+      //       this.enemy[j]._let = true;
+      //     }
+      //   }
+
+
+      //   // for (var j in collisions){
+
+      //   // }
+
+      //   this.enemy[j].x += this.enemyVector; 
+
+      // }
+      // console.log(this.enemy[j].enemyCollisions)
