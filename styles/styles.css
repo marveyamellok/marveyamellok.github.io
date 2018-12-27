@@ -396,7 +396,7 @@ template {
 .header {
   width: 100%;
   height: 50px;
-  position: relative;
+  position: absolute;
   background-color: #0e3382;
   top: 0;
   left: 0;
@@ -435,7 +435,6 @@ template {
     align-items: center;
     text-decoration: none;
     color: white;
-    padding: 0 60px;
     height: 100%;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -492,3 +491,36 @@ template {
     .header__submenu-item:hover {
       background-color: white;
       color: #0e3382; }
+
+.content {
+  width: 100%;
+  font-family: Impact;
+  color: white; }
+  .content__item {
+    padding: 40px; }
+  .content__item-title {
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 50px; }
+  .content__carousel {
+    width: 100%;
+    outline: 2px solid red; }
+  .content__carousel-wrapper {
+    width: 300%; }
+  .content__carousel-item {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100vw - 2*40px);
+    padding: 0 30px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative; }
+  .content__carousel-title {
+    position: absolute;
+    bottom: 30px;
+    right: calc(30px + 40px); }
+  .content__carousel-image {
+    width: 100%;
+    height: 300px;
+    background-color: red; }

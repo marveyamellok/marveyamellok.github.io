@@ -1,6 +1,7 @@
 .main {
   min-height: 100vh;
   width: 100vw;
+  padding-top: 55px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background: -webkit-linear-gradient(315deg, #3185f9 0%, #22b76f 51%, #207cca 100%, #a1c96c 100%);

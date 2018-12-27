@@ -1,0 +1,46 @@
+.content{
+  width: 100%;
+  font-family:  Impact;
+  color: white;
+
+  &__item{
+    padding: 40px;
+  }
+
+  &__item-title{
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 50px;
+  }
+
+  &__carousel{
+    width: 100%;
+    outline: 2px solid red;
+  }
+
+  &__carousel-wrapper{
+    width: 300%;
+  }
+
+  &__carousel-item{
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100vw - 2*40px);
+    padding: 0 30px;
+    box-sizing: border-box;
+    position: relative; 
+  }
+
+  &__carousel-title{
+    position: absolute;
+    bottom: 30px;
+    right: calc(30px + 40px);
+  }
+
+  &__carousel-image{
+    width: 100%;
+    height: 300px;
+    background-color: red;
+  }
+}
