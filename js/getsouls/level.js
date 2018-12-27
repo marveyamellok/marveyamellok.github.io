@@ -15,7 +15,7 @@
     }
   };
 
-  var Enemy = function (x, y, w, h, color, moveRight, _let, enemyVector) {
+  var Enemy = function (x, y, w, h, color, moveRight, _let, enemyVector, enemyCollisions) {
     this.x = x;
     this.y = y;
     this.width = w;
@@ -24,6 +24,7 @@
     this.moveRight = true;
     this._let = true;
     this.enemyVector = 0.008;
+    this.enemyCollisions = [];
   };
 
   Enemy.prototype = {
@@ -48,11 +49,11 @@
       [1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1],
-      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,1],
+      [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1],
       [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,4,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1,0,0,0,3,0,0,0,0,4,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ]
   };
@@ -79,8 +80,8 @@
       arr.push(tmp);
     },
 
-    addEnemy: function(x, y, w, h, c, arr, moveRight, _let, enemyVector){
-      var tmp = new Enemy(x, y, w, h, c, moveRight, _let, enemyVector);
+    addEnemy: function(x, y, w, h, c, arr, moveRight, _let, enemyVector, enemyCollisions){
+      var tmp = new Enemy(x, y, w, h, c, moveRight, _let, enemyVector, enemyCollisions);
       arr.push(tmp);
     },
 
@@ -106,7 +107,7 @@
           }
 
           if (tile == 4){
-            this.addEnemy(dx, dy, map.widthEnemy, map.widthEnemy, map.color, this.enemy, true, true, 0.008)
+            this.addEnemy(dx, dy, map.widthEnemy, map.widthEnemy, map.color, this.enemy, true, true, 0.008, [])
           }
         }
       }
@@ -153,17 +154,19 @@
 
           if (isCollision(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){
             this.enemy[j]._let = true;
+            this.enemy[j].enemyCollisions.push(wall);
 
             if (collisionWallsEnemy(item.x, item.y, item.width, item.height, wall.x, wall.y, wall.width, wall.height)){ //////препятствие справа
               this.enemy[j].enemyVector *= -1;
+              // this.enemy[j]._let = false;
             }
-          }
-
+          } 
             if (this.enemy[j]._let){
               this.enemy[j].enemyVector *= -1;
               this.enemy[j]._let = false;
             }
 
+          // console.log(this.enemy[j].collis)
           this.enemy[j].x += this.enemy[j].enemyVector; 
         }
       } 

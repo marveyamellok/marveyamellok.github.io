@@ -62,6 +62,16 @@ var player = {
     this.y += this.dy;
     if (this.isLose == true) return;
 
+    if(mc.isActionActive("up") && mc.isActionActive("right")){
+      console.log("fhdgfdfg");
+      if (this.jump == true) return;
+      this.jumpPressed = true;
+      // if (level.right) this.x = this.x - rightMove;
+      this.dx = 1;
+      this.x += (this.dx * this.speed);
+      return;
+    };
+
     if(mc.isActionActive("up")){
       if (this.jump == true) return;
       this.jumpPressed = true;
