@@ -1,5 +1,4 @@
-//- import components/project.pug
-
+include components/header/header.pug
 
 doctype html
 html
@@ -7,4 +6,6 @@ html
     meta(charset="utf-8")
     meta(name="description" content="")
     link(rel="stylesheet" href="css/style.css")
-  body
+    link(rel="stylesheet" href="styles/styles.css")
+  body(class = "main")
+    +header

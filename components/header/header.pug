@@ -1,3 +1,11 @@
 mixin header(content, params)
   .header&attributes(attributes)
-    block
+    .header__wrapper
+      a(href="#").header__item About me
+      a(href="#").header__item About games
+      .header__item Games
+        .header__submenu
+          a(href="/games/seabattle").header__submenu-item Sea ​​Battle
+          a(href="/games/getsouls").header__submenu-item Souls Collection
+      a(href="#").header__item Something else 
+      block
