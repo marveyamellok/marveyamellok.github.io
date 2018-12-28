@@ -453,7 +453,8 @@ template {
       background: -o-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: linear-gradient(135deg, #b4e391 0%, #61c419 50%, #b4e391 100%); }
       .header__item:hover .header__submenu {
-        height: 118px; }
+        height: 174px;
+        z-index: 5; }
       .header__item:hover .header__submenu-item {
         height: 18px;
         padding: 20px 0;
@@ -530,7 +531,7 @@ template {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative; }
-    .content__carousel-item:active .content__carousel-title, .content__carousel-item:visited .content__carousel-title {
+    .content__carousel-item:active .content__carousel-title, .content__carousel-item:visited .content__carousel-title, .content__carousel-item:-webkit-any-link .content__carousel-title {
       color: white; }
   .content__carousel-title {
     position: absolute;

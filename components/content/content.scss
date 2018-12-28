@@ -45,7 +45,8 @@
     position: relative; 
 
     &:active,
-    &:visited{
+    &:visited,
+    &:-webkit-any-link {
       .content__carousel-title{
         color: white;
       }

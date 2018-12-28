@@ -1,0 +1,29 @@
+include ../../styles/project.pug
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="description" content="")
+    link(rel="stylesheet" href="style.css")
+    link(rel="stylesheet" href="../../styles/styles.css")
+    <script type="text/javascript" src="../../lib/jquery-2.2.4.min.js" defer></script>
+    <script type="text/javascript" src="script.js" defer></script>
+    <script src='http://code.jquery.com/jquery-latest.js'></script>
+  body
+    +header
+    .game
+      .wrapper
+      .table 
+      input(type="button" class="start" value="Start")
+      .timer
+        .timer__text
+          .timer__hours 00
+          <span> : </span>
+          .timer__minutes 00
+          <span> : </span>
+          .timer__seconds 00 
+      .result
+        .result__text
+        .result__OldText
+      input(type="button" class="clear-btn" value="Clear Best Score")

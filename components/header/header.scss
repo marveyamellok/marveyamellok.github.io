@@ -43,7 +43,8 @@
       background: linear-gradient(135deg, rgba(180,227,145,1) 0%,rgba(97,196,25,1) 50%,rgba(180,227,145,1) 100%);
 
       .header__submenu{
-        height: 118px;
+        height: 174px;
+        z-index: 5;
       }
 
       .header__submenu-item{
