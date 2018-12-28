@@ -1,0 +1,22 @@
+mixin lists(content, params)
+  .lists&attributes(attributes)
+    block
+
+mixin list(content, params)
+  .list&attributes(attributes)
+    .list__header
+      .list__roll 
+      .list__delete
+    .list__top
+      .list__title
+      input(type="text").list__title-input
+      button.list__title-button Подтвердить название
+    .list__middle
+      input(type="text").list__text-input
+      button.list__text-button Добавить элемент
+    .list__bottom
+      .list__elem
+        label.list__elem-block
+          input(type="checkbox").list__elem-input
+          .list__elem-text Элемент списка
+        .list__elem-delete
