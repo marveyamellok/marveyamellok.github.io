@@ -5,6 +5,7 @@
 
   &__item{
     padding: 40px;
+    text-align: center;
   }
 
   &__item-title{
@@ -15,32 +16,106 @@
   }
 
   &__carousel{
+    position: relative;
     width: 100%;
-    outline: 2px solid red;
+    max-width: 700px;
+    margin: auto;
+    text-align: left;
+  }
+
+  &__carousel-window{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    outline: 10px double;
   }
 
   &__carousel-wrapper{
     width: 300%;
+    transition: transform 0.3s;
+    font-size: 0;
   }
 
   &__carousel-item{
     display: inline-block;
     vertical-align: middle;
     width: calc(100vw - 2*40px);
-    padding: 0 30px;
+    // padding: 0 30px;
     box-sizing: border-box;
     position: relative; 
+
+    &:active,
+    &:visited{
+      .content__carousel-title{
+        color: white;
+      }
+    }
   }
 
   &__carousel-title{
     position: absolute;
     bottom: 30px;
+    font-size: 30px;
     right: calc(30px + 40px);
   }
 
   &__carousel-image{
     width: 100%;
     height: 300px;
-    background-color: red;
+    background-color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    img{
+      // height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__pagination{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    width: 40px;
+    height: 40px;
+    border-top: 8px solid #3c3333;
+    border-left: 8px solid gray;
+    cursor: pointer;
+    transition: transform 0.3s, right 0.3s, left 0.3s;
+
+    &_left{
+      left: -50px;
+      transform: rotate(-45deg);
+
+      // &:hover{
+      //   transform: scale(1.2) rotate(-45deg);
+      // }
+
+      // &:active{
+      //   left: -150px;
+      // }
+    }
+
+    &_right{
+      right: -50px;
+      transform: rotate(135deg);
+
+      // &:hover{
+      //   transform: scale(1.2) rotate(135deg);
+      // }
+
+      // &:active{
+      //   right: -150px;
+      // }
+    }
+
+    &_disable{
+      opacity: 0.2;
+    }
   }
 }

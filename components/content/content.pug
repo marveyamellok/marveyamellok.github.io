@@ -12,16 +12,20 @@ mixin content__item(content, params)
 
 mixin content__carousel(content, params)
   .content__carousel&attributes(attributes)
-    .content__carousel-wrapper
-      +content__carousel-item({title: "Sea ​​Battle"})
-      +content__carousel-item({title: "Souls Collection"})
+    .content__carousel-window
+      .content__carousel-wrapper
+        +content__carousel-item({title: "Sea ​​Battle", src: "images/main/5.jpg", href: "/games/seabattle"})
+        +content__carousel-item({title: "Souls Collection", src: "images/main/2.jpg", href: "/games/getsouls"})
+        +content__carousel-item({title: "Sea ​​Battle", src: "images/main/5.jpg", href: "/games/seabattle"})
+        +content__carousel-item({title: "Souls Collection", src: "images/main/2.jpg", href: "/games/getsouls"})
     .content__carousel-pagination
-      .content__carousel-left
-      .content__carousel-right
+      .content__pagination.content__pagination_left.content__pagination_disable
+      .content__pagination.content__pagination_right
     block
 
 mixin content__carousel-item(content, params)
-  .content__carousel-item&attributes(attributes)
+  a(href=content.href).content__carousel-item&attributes(attributes)
     .content__carousel-image
+      img(src=content.src)
     .content__carousel-title!=content.title
     block

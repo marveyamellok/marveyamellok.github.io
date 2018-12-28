@@ -11,29 +11,33 @@
       <div class="header__wrapper"><a class="header__item" href="/">Home</a><a class="header__item" href="#">About me</a><a class="header__item" href="#">About games</a>
         <div class="header__item">Games
           <div class="header__submenu"><a class="header__submenu-item" href="/games/seabattle">Sea ​​Battle</a><a class="header__submenu-item" href="/games/getsouls">Souls Collection</a></div>
-        </div><a class="header__item" href="#">Something else </a>
+        </div><a class="header__item" href="#">JS works</a>
       </div>
     </div>
     <div class="content">
       <div class="content__item">
         <div class="content__item-title">Games</div>
         <div class="content__carousel">
-          <div class="content__carousel-wrapper">
-            <div class="content__carousel-item">
-              <div class="content__carousel-image"></div>
-              <div class="content__carousel-title">Sea ​​Battle</div>
-            </div>
-            <div class="content__carousel-item">
-              <div class="content__carousel-image"></div>
-              <div class="content__carousel-title">Souls Collection</div>
+          <div class="content__carousel-window">
+            <div class="content__carousel-wrapper"><a class="content__carousel-item" href="/games/seabattle">
+                <div class="content__carousel-image"><img src="images/main/5.jpg"/></div>
+                <div class="content__carousel-title">Sea ​​Battle</div></a><a class="content__carousel-item" href="/games/getsouls">
+                <div class="content__carousel-image"><img src="images/main/2.jpg"/></div>
+                <div class="content__carousel-title">Souls Collection</div></a><a class="content__carousel-item" href="/games/seabattle">
+                <div class="content__carousel-image"><img src="images/main/5.jpg"/></div>
+                <div class="content__carousel-title">Sea ​​Battle</div></a><a class="content__carousel-item" href="/games/getsouls">
+                <div class="content__carousel-image"><img src="images/main/2.jpg"/></div>
+                <div class="content__carousel-title">Souls Collection</div></a>
             </div>
           </div>
           <div class="content__carousel-pagination">
-            <div class="content__carousel-left"></div>
-            <div class="content__carousel-right"></div>
+            <div class="content__pagination content__pagination_left content__pagination_disable"></div>
+            <div class="content__pagination content__pagination_right"></div>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="../../lib/jquery-2.2.4.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
