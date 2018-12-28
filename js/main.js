@@ -9,6 +9,7 @@ $(function(){
     var right = $(".content__pagination_right");
     count = 0;
     var max = carouselItem.length - 1;
+    var moveLeft = false;
 
     for (var i = 0; i < carouselItem.length; i++ ){
       $(carouselItem).width(carouselWidth);
@@ -17,20 +18,37 @@ $(function(){
     $(carouselWrapper).width(carouselItem.length * carouselWidth);
 
     $(left).on("click", function(){
-      click( 0, -1, left, right);
+      if (count == 0) return;
+      count--;
+      click(count);
     })
 
     $(right).on("click", function(){
-      click( max, 1, right, left);
+      if (count == max ) return;
+      count++;
+      click(count);
     })
 
-    function click(max, variable, thisDir, thatDir){
-      if (count == max) return;
-      count += variable;
+    setInterval(function(){
+      if (count == max) moveLeft = true;
+      if (count == 0) moveLeft = false;
+      if (moveLeft){
+        count--
+      } else {
+        count++
+      }
+      click(count);
+    }, 5000)
+
+    function click(count){
       carouselWrapper.style.transform = "translate(-" + carouselWidth*count + "px";
-      $(thatDir).removeClass("content__pagination_disable");
+      $(right).removeClass("content__pagination_disable");
+      $(left).removeClass("content__pagination_disable");
       if (count == max){
-        $(thisDir).addClass("content__pagination_disable")   
+        $(right).addClass("content__pagination_disable")   
+      } 
+      if (count == 0){
+        $(left).addClass("content__pagination_disable")   
       }
     }
   }
