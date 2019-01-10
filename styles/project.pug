@@ -1,3 +1,17 @@
+
+//- include ../components/data.json as copyright
 include ../components/header/header.pug
 include ../components/content/content.pug
 include ../components/list/list.pug
+include ../components/table/table.pug
+include ../components/filters/filters.pug
+
+mixin page
+  -
+    // import as copyright from '../components/data.json';
+    // let copyright = JSON.parse(data);
+    // copyright = getData("../components/data.json")
+
+  .page
+    block
+

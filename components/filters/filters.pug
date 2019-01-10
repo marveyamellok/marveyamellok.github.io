@@ -1,0 +1,39 @@
+mixin filters(content, params)
+  .filters&attributes(attributes)
+    .filter(id="priceItem")
+      .filter__name Price
+      .filter__block.filter__block_slider
+        +filter__slider
+    .filter(id="gotItem")
+      .filter__name Have Something
+      .filter__block
+        .filter__item
+          label 
+            .filter__item-text Show only with
+            input(type="checkbox").filter__item-input
+            .filter__item-check
+    .filter(id="dateItem")
+      .filter__name Date
+      .filter__block.filter__block_half
+        +filter__item({text: "2013", id: "data2013"}).filter__item_half
+        +filter__item({text: "2014", id: "data2014"}).filter__item_half
+        +filter__item({text: "2015", id: "data2015"}).filter__item_half
+        +filter__item({text: "2016", id: "data2016"}).filter__item_half
+        +filter__item({text: "2017", id: "data2017"}).filter__item_half
+        +filter__item({text: "2018", id: "data2018"}).filter__item_half
+    block
+
+mixin filter__item(content, params)
+  .filter__item&attributes(attributes)
+    label 
+      .filter__item-text!=content.text
+      input(type="checkbox" id=content.id).filter__item-input
+      .filter__item-check
+
+
+mixin filter__slider(content, params)
+  .filter__slider&attributes(attributes)
+    .filter__slider-left
+    .filter__slider-right
+    .filter__slider-line
+    .filter__slider-line-show
