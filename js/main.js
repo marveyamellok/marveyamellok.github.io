@@ -54,4 +54,8 @@ $(function(){
   }
 
   carousel();
+
+  function compareNumbers(a, b) {
+    return a - b;
+  }
 })

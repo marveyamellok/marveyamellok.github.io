@@ -16,8 +16,13 @@ $(function(){
         elemArr.push(newElText);
       }
     }
-    tArr.push(elemArr)
+    tArr.push(elemArr);
   }
+
+  var data = [];
+  data.push(tArr);
+
+  $(window).trigger( "arr:ready", data );
 
   $(sortButton).on("click", function(){
     newTArr = [];
@@ -77,10 +82,6 @@ $(function(){
         }
       }
     }
-  }
-
-  function compareNumbers(a, b) {
-    return a - b;
   }
 
 })

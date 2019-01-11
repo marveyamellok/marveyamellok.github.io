@@ -1,10 +1,10 @@
 mixin filters(content, params)
   .filters&attributes(attributes)
-    .filter(id="priceItem")
+    .filter(id="priceFilter")
       .filter__name Price
       .filter__block.filter__block_slider
         +filter__slider
-    .filter(id="gotItem")
+    .filter(id="gotFilter")
       .filter__name Have Something
       .filter__block
         .filter__item
@@ -37,3 +37,5 @@ mixin filter__slider(content, params)
     .filter__slider-right
     .filter__slider-line
     .filter__slider-line-show
+    .filter__slider-left-info 0
+    .filter__slider-right-info 11700
