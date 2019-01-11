@@ -10,7 +10,11 @@
 // });
 
 
-
 function compareNumbers(a, b) {
   return a - b;
+}
+
+
+function compareNumbersD(a, b) {
+  return b - a;
 }

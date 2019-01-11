@@ -56,8 +56,8 @@ $(function(){
       $($left).css({"left" : leftPos});
       $($line).css({"left" : leftPos, "width" :  lineWidth - rightPos - leftPos - circleWidth / 2});
 
-      var leftPersent = Math.round((leftPos + circleWidth / 2)/lineWidth * 100)
-      var leftRes = max / 100 * leftPersent;
+      var leftPersent = ((leftPos + circleWidth / 2)/lineWidth * 100)
+      var leftRes = Math.round(max / 100 * leftPersent);
       $(".filter__slider-left-info").html(leftRes);
     }
 
@@ -68,8 +68,8 @@ $(function(){
       $($right).css({"right" : rightPos});
       $($line).css({"left" : leftPos, "width" :  lineWidth - rightPos - leftPos - circleWidth / 2});
 
-      var rightPersent = Math.round(100 - ((rightPos + circleWidth / 2)/lineWidth) * 100);
-      var rightRes = max / 100 * rightPersent;
+      var rightPersent = (100 - ((rightPos + circleWidth / 2)/lineWidth) * 100);
+      var rightRes = Math.round(max / 100 * rightPersent);
       $(".filter__slider-right-info").html(rightRes);
     }
 

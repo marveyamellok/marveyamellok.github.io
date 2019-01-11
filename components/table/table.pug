@@ -2,6 +2,8 @@ mixin table(content, params)
   .table&attributes(attributes)
     .table__column(id="NameItem")
       .table__item.table__header(data-num="0") Name
+        .table__sort-top
+        .table__sort-bottom
       .table__item Name_1
       .table__item Name_2
       .table__item Name_3
@@ -10,6 +12,8 @@ mixin table(content, params)
       .table__item Name_6
     .table__column(id="CodeItem")
       .table__item.table__header(data-num="1") Code
+        .table__sort-top
+        .table__sort-bottom
       .table__item 12345
       .table__item 456452
       .table__item 135790
@@ -18,6 +22,8 @@ mixin table(content, params)
       .table__item 185065
     .table__column(id="priceItem")
       .table__item.table__header(data-num="2") Price
+        .table__sort-top
+        .table__sort-bottom
       .table__item 3500
       .table__item 8000
       .table__item 7500
@@ -26,6 +32,8 @@ mixin table(content, params)
       .table__item 11700
     .table__column(id="gotItem")
       .table__item.table__header(data-num="3") Have Something
+        .table__sort-top
+        .table__sort-bottom
       .table__item yes
       .table__item no
       .table__item yes
@@ -34,6 +42,8 @@ mixin table(content, params)
       .table__item yes
     .table__column(id="dateItem")
       .table__item.table__header(data-num="4") Date
+        .table__sort-top
+        .table__sort-bottom
       .table__item 2015
       .table__item 2015
       .table__item 2018
