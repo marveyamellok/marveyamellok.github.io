@@ -1,7 +1,7 @@
 mixin table(content, params)
   .table&attributes(attributes)
     .table__column(id="NameItem")
-      .table__item.table__header(data-num="0") Name
+      .table__item.table__header(data-num="0").table__header_text Name
         .table__sort-top
         .table__sort-bottom
       .table__item Name_1
@@ -31,7 +31,7 @@ mixin table(content, params)
       .table__item 900
       .table__item 11700
     .table__column(id="gotItem")
-      .table__item.table__header(data-num="3") Have Something
+      .table__item.table__header(data-num="3").table__header_text Have Something
         .table__sort-top
         .table__sort-bottom
       .table__item yes

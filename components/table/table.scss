@@ -39,6 +39,25 @@
     &_sort{
       background: linear-gradient(135deg, rgba(180,227,145,1) 0%,rgba(97,196,25,1) 50%,rgba(180,227,145,1) 100%);
     }
+
+    &_text{
+      .table__sort-top{
+        display: none;
+      }
+
+      .table__sort-bottom{
+        bottom: 19px;
+        border: none;
+        background-color: white;
+        width: 10px;
+        height: 10px;
+
+        &_choose{
+          background-color: rgba(180,227,145,1);
+        }
+      }
+
+    }
   }
 
   &__sort-top,

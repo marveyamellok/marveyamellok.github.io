@@ -816,6 +816,16 @@ template {
       background: -webkit-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: -o-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: linear-gradient(135deg, #b4e391 0%, #61c419 50%, #b4e391 100%); }
+    .table__header_text .table__sort-top {
+      display: none; }
+    .table__header_text .table__sort-bottom {
+      bottom: 19px;
+      border: none;
+      background-color: white;
+      width: 10px;
+      height: 10px; }
+      .table__header_text .table__sort-bottom_choose {
+        background-color: #b4e391; }
   .table__sort-top, .table__sort-bottom {
     position: absolute;
     content: "";
