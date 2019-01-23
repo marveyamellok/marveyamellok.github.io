@@ -1,13 +1,27 @@
 .table{
-  display: flex;
+  // display: flex;
+  width: 100%;
+  border: 2px solid black;
 
   &__column{
     flex-grow: 1;
-    border: 2px solid black;
+    // border: 2px solid black;
+  }
+
+  &__header,
+  &__columns{
+    width: 100%;
+    display: flex;
+  }
+
+  &__column,
+  &__header-item{
+    width: 20%;
   }
 
 
-  &__item{
+  &__item,
+  &__header-item{
     width: 100%;
     padding: 15px 10px;
     text-align: center;
@@ -19,13 +33,16 @@
     box-sizing: border-box;
     letter-spacing: 1px;
     transition: background 0.3s;
+  }
 
+
+  &__item{
     &:last-child{
       border: none;
     }
   }
 
-  &__header{
+  &__header-item{
     position: relative;
     background: #0e3382;
     cursor: pointer;

@@ -125,6 +125,10 @@
       height: 2px;
     }
 
+    &-line{
+      // bottom: -30px;
+    }
+
     &-left,
     &-right{
       $w: 25px;
@@ -172,11 +176,12 @@
     }
 
     &-left{
-      left: 0;
+      left: calc(-25px / 2);
     }
 
     &-right{
-      right: 0;
+      left: calc( 100% - ( 25px / 2 ));
+      // right: 0;
     }
 
     &-line{

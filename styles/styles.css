@@ -777,15 +777,20 @@ template {
       transform: rotate(135deg); }
 
 .table {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
+  width: 100%;
+  border: 2px solid black; }
   .table__column {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
-    flex-grow: 1;
-    border: 2px solid black; }
-  .table__item {
+    flex-grow: 1; }
+  .table__header, .table__columns {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .table__column, .table__header-item {
+    width: 20%; }
+  .table__item, .table__header-item {
     width: 100%;
     padding: 15px 10px;
     text-align: center;
@@ -800,31 +805,31 @@ template {
     -webkit-transition: background 0.3s;
     -o-transition: background 0.3s;
     transition: background 0.3s; }
-    .table__item:last-child {
-      border: none; }
-  .table__header {
+  .table__item:last-child {
+    border: none; }
+  .table__header-item {
     position: relative;
     background: #0e3382;
     cursor: pointer;
     border-bottom: 2px solid black;
     color: white; }
-    .table__header:hover {
+    .table__header-item:hover {
       background: -webkit-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: -o-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: linear-gradient(135deg, #b4e391 0%, #61c419 50%, #b4e391 100%); }
-    .table__header_sort {
+    .table__header-item_sort {
       background: -webkit-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: -o-linear-gradient(315deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
       background: linear-gradient(135deg, #b4e391 0%, #61c419 50%, #b4e391 100%); }
-    .table__header_text .table__sort-top {
+    .table__header-item_text .table__sort-top {
       display: none; }
-    .table__header_text .table__sort-bottom {
+    .table__header-item_text .table__sort-bottom {
       bottom: 19px;
       border: none;
       background-color: white;
       width: 10px;
       height: 10px; }
-      .table__header_text .table__sort-bottom_choose {
+      .table__header-item_text .table__sort-bottom_choose {
         background-color: #b4e391; }
   .table__sort-top, .table__sort-bottom {
     position: absolute;
@@ -1000,9 +1005,9 @@ template {
         background-color: #a8bbc3;
         border-radius: 50%; }
     .filter__slider-left {
-      left: 0; }
+      left: calc(-25px / 2); }
     .filter__slider-right {
-      right: 0; }
+      left: calc( 100% - ( 25px / 2 )); }
     .filter__slider-line {
       width: 100%;
       background-color: #a8bbc3; }

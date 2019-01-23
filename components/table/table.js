@@ -1,45 +1,186 @@
 $(function(){
+  var arr = [];
   var tArr = [];
   var newTArr = [];
   var $table = $(".table");
   var $tableColumn = $(".table__column");
-  var sortButton = $(".table__header");
+  var columns = document.querySelector(".table__columns");
+  var sortButton = $(".table__header-item");
   var sortButtonTop = $(".table__sort-top");
   var sortButtonBottom = $(".table__sort-bottom");
+  var range;
+  var min;
+  var max;
+  var arrForFilter = [];
 
-  for (var i = 0; i < $tableColumn.length; i++){
-    var elemArr = []
-    var newCol = $(".table__item", $tableColumn[i]);
+  var price = document.getElementById("priceItem"); 
+  var prices = [];
+  var priceElms = $(price).children();
 
-    for (var j = 0; j < newCol.length; j++){
-      var newEl = $(newCol[j])
-      var newElText = $(newEl).html();
-      if(!$(newEl).hasClass("table__header")){
-        elemArr.push(newElText);
-      }
-    }
-    tArr.push(elemArr);
-  }
+  var nowPos = [0, 1, 2, 3, 4, 5];
+  var freeArr = [];
 
-  var data = [];
-  data.push(tArr);
+  var filter;
 
-  $(window).trigger( "arr:ready", data );
+
+  // $(window).on( "filter:done", function(e, _filter){
+  //   console.log(_filter)
+  //   filter = _filter;
+  //   var arr = 
+
+  //   // filterPrice(filter)
+  //   createTable(arr, pos)
+  // })
+
+
+
+
+
+  // function filterPrice(arr){
+  //   range = arr;
+  //   min = arr.price.min;
+  //   max = arr.price.max;
+  //   prices = [];
+
+  //   console.log(min, max)
+
+  //   // if (newTArr.length <= 0){
+  //   //   arrForFilter = nowArr;
+  //   // } else {
+  //   //   arrForFilter = newTArr;
+  //   // }
+
+  //   // for (var i = 0; i < priceElms.length; i++){
+  //   //   var priceItem = $(priceElms[i]).html();
+  //   //   if (priceItem >= min && priceItem <= max){
+  //   //     prices.push(i);
+  //   //   }
+  //   // }
+  //   // createNewTable(nowArr, prices);
+
+  //   // nowPos = prices;
+  //   // nowArr = arrForFilter;
+  // };
+
+  // function createTable(arr, pos){
+  //   var col = $(".table__column");
+  //   $(col).html("");
+  //   if (arr.length <= 0) arr = nowArr;
+
+  //   for (var i = 0; i < arr.length; i++){
+  //     var columnItem = arr[i];
+
+  //     for (var j = 0; j < pos.length; j++){
+  //       var itemPos = pos[j];
+  //       var newCell = document.createElement('div');
+  //       newCell.className = 'table__item';
+  //       col[i].appendChild(newCell);
+  //       $(newCell).html(arr[i][itemPos])
+  //     }
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  nowArr = getInner(freeArr);
 
   $(sortButtonTop).on("click", function(){
     var num = $($(this).parent()).data("num");
+    tArr = getInner(arr);
+    nowArr = tArr;
     sortTable(true, tArr[num]);
     $(sortButtonTop).removeClass("table__sort-top_choose");
     $(sortButtonBottom).removeClass("table__sort-bottom_choose");
     $(this).addClass("table__sort-top_choose");
   });
 
-  $(sortButtonBottom).on("click", function(){
+  $(sortButtonBottom).on("click", function(){   
     var num = $($(this).parent()).data("num");
+    tArr = getInner(arr);
+    nowArr = tArr;
     sortTable(false, tArr[num]);
     $(sortButtonBottom).removeClass("table__sort-bottom_choose");
     $(sortButtonTop).removeClass("table__sort-top_choose");
     $(this).addClass("table__sort-bottom_choose");
+  });
+
+  $(window).on( "filter:price", function(e, priceArr){
+    range = priceArr;
+    min = priceArr.min;
+    max = priceArr.max;
+    prices = [];
+
+    if (newTArr.length <= 0){
+      arrForFilter = nowArr;
+    } else {
+      arrForFilter = newTArr;
+    }
+
+    console.log(arrForFilter)
+
+    for (var i = 0; i < priceElms.length; i++){
+      var priceItem = $(priceElms[i]).html();
+      if (priceItem >= min && priceItem <= max){
+        prices.push(i);
+      }
+    }
+    // console.log(nowArr)
+    createNewTable(nowArr, prices);
+
+    nowPos = prices;
+    nowArr = arrForFilter;
+  });
+
+  $(window).on( "filter:check", function(e, flag){
+    var arrCheck = getInner(arr);
+    var $thisCol = $("#gotItem").children();
+    var newPos = [];
+
+    for (var i = 0; i < $thisCol.length; i++){
+      var itemCol = $($thisCol[i]).html();
+      console.log(itemCol)
+      if (flag && itemCol == "yes"){
+        newPos.push(i);
+      } 
+    }
+
+    // console.log(nowArr, nowPos)
+
+    if (newPos.length >= 0){
+      createNewTable(arrCheck, newPos)
+    } else {
+      createNewTable(nowArr, nowPos)
+    }
+    
   });
 
   function sortTable(increase, arr){
@@ -55,7 +196,11 @@ $(function(){
       }
       newTArr.push(colArr);
     }
+
     createTable(newTArr); 
+
+    nowPos = pos;
+    nowArr = newTArr;
   }
 
 
@@ -79,6 +224,7 @@ $(function(){
 
   function getPosition(arr, increase){
     var newArr;
+
     if (increase){
       newArr = sortArrIncrease(arr);
     } else {
@@ -99,18 +245,82 @@ $(function(){
   }
 
   function createTable(arr){
+    $tableColumn = $(".table__column");
 
     for (var i = 0; i < $tableColumn.length; i++){
       var $colElems = $(".table__item", $tableColumn[i]);
 
       for (var j = 0; j < $colElems.length; j++){
         var elem = $colElems[j];
-
-        if(!$(elem).hasClass("table__header")){
-          $(elem).html(arr[i][j-1]);
-        }
+        $(elem).html(arr[i][j]);
       }
     }
   }
 
+  function getInner(arr){
+    arr = [];
+    for (var i = 0; i < $tableColumn.length; i++){
+      var elemArr = []
+      var newCol = $(".table__item", $tableColumn[i]);
+
+      for (var j = 0; j < newCol.length; j++){
+        var newEl = $(newCol[j])
+        var newElText = $(newEl).html();
+        elemArr.push(newElText);
+      }
+
+      arr.push(elemArr);
+    }
+    return arr;
+  }
+
+  // function createNewTable(arr, pos){
+  //   var col = $(".table__column");
+  //   $(col).html("");
+  //   // console.log("nowArr: ", nowArr)
+  //   if (arr.length <= 0) arr = nowArr;
+  //   // console.log("nowArr_2: ", arr, nowArr)
+
+  //   for (var i = 0; i < arr.length; i++){
+  //     var columnItem = arr[i];
+  //     // console.log(col[i])
+
+  //     // var newColl = document.createElement('div');
+  //     // newColl.className = 'table__column';
+  //     // columns.appendChild(newColl);
+
+  //     for (var j = 0; j < pos.length; j++){
+  //       var itemPos = pos[j];
+  //       var newCell = document.createElement('div');
+  //       newCell.className = 'table__item';
+  //       col[i].appendChild(newCell);
+
+  //       // console.log("arr: ", arr[i][itemPos])
+  //       $(newCell).html(arr[i][itemPos])
+  //     }
+  //   }
+  // }
+
+  function createNewTable(arr, pos){
+
+    $(columns).html("");
+
+    if (arr.length <= 0) arr = getInner(arr);
+
+    for (var i = 0; i < arr.length; i++){
+      var columnItem = arr[i];
+
+      var newColl = document.createElement('div');
+      newColl.className = 'table__column';
+      columns.appendChild(newColl);
+
+      for (var j = 0; j < pos.length; j++){
+        var itemPos = pos[j];
+        var newCell = document.createElement('div');
+        newCell.className = 'table__item';
+        newColl.appendChild(newCell);
+        $(newCell).html(arr[i][itemPos])
+      }
+    }
+  }
 })

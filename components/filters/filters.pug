@@ -7,11 +7,7 @@ mixin filters(content, params)
     .filter(id="gotFilter")
       .filter__name Have Something
       .filter__block
-        .filter__item
-          label 
-            .filter__item-text Show only with
-            input(type="checkbox").filter__item-input
-            .filter__item-check
+        +filter__item({text: "Show only with", id: "check"}).filter__item_half
     .filter(id="dateItem")
       .filter__name Date
       .filter__block.filter__block_half
