@@ -11,12 +11,12 @@ mixin filters(content, params)
     .filter(id="dateItem")
       .filter__name Date
       .filter__block.filter__block_half
-        +filter__item({text: "2013", id: "data2013"}).filter__item_half
-        +filter__item({text: "2014", id: "data2014"}).filter__item_half
-        +filter__item({text: "2015", id: "data2015"}).filter__item_half
-        +filter__item({text: "2016", id: "data2016"}).filter__item_half
-        +filter__item({text: "2017", id: "data2017"}).filter__item_half
-        +filter__item({text: "2018", id: "data2018"}).filter__item_half
+        +filter__item({text: "2013", id: "data2013"}).filter__item_half.filter__item_date
+        +filter__item({text: "2014", id: "data2014"}).filter__item_half.filter__item_date
+        +filter__item({text: "2015", id: "data2015"}).filter__item_half.filter__item_date
+        +filter__item({text: "2016", id: "data2016"}).filter__item_half.filter__item_date
+        +filter__item({text: "2017", id: "data2017"}).filter__item_half.filter__item_date
+        +filter__item({text: "2018", id: "data2018"}).filter__item_half.filter__item_date
     block
 
 mixin filter__item(content, params)

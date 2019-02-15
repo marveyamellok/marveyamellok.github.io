@@ -1,4 +1,5 @@
 $(function(){
+
   var $left = $(".filter__slider-left");
   var $right = $(".filter__slider-right");
   var $line = $(".filter__slider-line-show");
@@ -27,8 +28,6 @@ $(function(){
   var prices = [];
   var priceElms = $(price).children();
 
-  var $check = $("#check");
-
   for (var i = 0; i < priceElms.length; i++){
     if (!$(priceElms[i]).hasClass("table__header")){
       prices.push($(priceElms[i]).html());
@@ -36,14 +35,9 @@ $(function(){
   }
 
   prices.sort(compareNumbers);
+
   var min = Number(prices[0]);
   var max = Number(prices[prices.length - 1]);
-
-  var priceArr = {
-    min: 0,
-    max: max
-  };
-
 
   var filter = {
     price: {
@@ -53,21 +47,33 @@ $(function(){
     const: {
       flag: false
     },
-    pos: [
-      0, 
-      1, 
-      2, 
-      3, 
-      4, 
-      5
-    ],
-    arr: [
-      ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
-      [12345, 456452, 135790, 122233, 3345, 185065],
-      [3500, 8000, 7500, 400, 900, 11700],
-      ["yes", "no", "yes", "yes", "no", "yes"],
-      [2015, 2015, 2018, 2013, 2014, 2015]
-    ]
+    pos: [0, 1, 2, 3, 4, 5],
+    posPrice: [0, 1, 2, 3, 4, 5],
+    posCheck: [0, 1, 2, 3, 4, 5],
+    posYears: [0, 1, 2, 3, 4, 5],
+    standart: [0, 1, 2, 3, 4, 5],
+    arr: {
+      "nameItem": ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
+      "codeItem": [12345, 456452, 135790, 122233, 3345, 185065],
+      "priceItem": [3500, 8000, 7500, 400, 900, 11700],
+      "gotItem": ["yes", "no", "yes", "yes", "no", "yes"],
+      "dateItem": [2015, 2015, 2018, 2013, 2014, 2015]
+    }
+  };
+
+  var newPosPrice = filter.posPrice;
+  var years = [];
+  var checks = filter.posCheck;
+  var dates = [];
+  var datesPos = filter.posYears;
+
+  var $check = $("#check");
+
+  var $year = $(".filter__item_date");
+
+  var priceArr = {
+    min: 0,
+    max: max
   };
 
   $($left).on("mousedown", function(){
@@ -97,7 +103,7 @@ $(function(){
       $($line).css({"left" : leftPos + circleConst, "width": width});
       $(".filter__slider-left-info").html(leftRes);
 
-      priceArr.min = leftRes;
+      // priceArr.min = leftRes;
       filter.price.min = leftRes;
     }
 
@@ -113,49 +119,130 @@ $(function(){
       $($line).css({"left" : leftPos + circleConst, "width": width});
       $(".filter__slider-right-info").html(rightRes);
 
-      priceArr.max = rightRes;
       filter.price.max = rightRes;
     }
 
     if (mousedownLeft || mousedownRight){
-      // $(window).trigger( "filter:done", filter);
-      $(window).trigger( "filter:price", priceArr);
+      var filterPos = filter.pos;
+      var check = filter.pos;
+      var years = filter.pos;
+
+      var priceList;
+      var maxP = filter.price.max;
+      var minP = filter.price.min;
+      newPosPrice = [];
+
+      for (n in filter.arr){
+        if (n == "priceItem"){
+          priceList = filter.arr[n];
+        }
+      }
+
+      for (var i = 0; i < priceList.length; i++){
+        if (priceList[i] >= minP && priceList[i] <= maxP ){
+          newPosPrice.push(i);
+        }
+      }
+
+
+
+
+      var totalPos = getPos(newPosPrice, checks, datesPos);
+      filter.pos = totalPos;
+
+      filter.posPrice = newPosPrice;
+
+      $(window).trigger( "filter:done", filter);
     }
   })
 
   $($check).on("click", function(){
     var check = $(this).prop( "checked");
+    var elems = filter.arr.gotItem;
+    checks = [];
+
+    if (check){
+      for (var i = 0; i < elems.length; i++){
+        if (elems[i] == "yes"){
+          checks.push(i);
+        }
+      }
+    } else {
+      checks = filter.standart
+    };
+
+    var totalPos = getPos(newPosPrice, checks, datesPos);
+    filter.pos = totalPos;
     filter.const.flag = check;
-    // $(window).trigger("filter:done", filter);
-    $(window).trigger("filter:check", check);
+    filter.posCheck = checks;
+
+    $(window).trigger("filter:done", filter);
   })
 
-  // $(document).on("mousemove", function(event){
+  $(".filter__item-input").on("click", function(){
 
-    // if(mousedownLeft){
-    //   var pos = event.clientX;
-    //   if (pos <= leftPoint || pos >= rightPoint || pos <= rightPos) return;
-    //   leftPos = pos - leftPoint - circleWidth / 2;
-    //   $($left).css({"left" : leftPos});
-    //   $($line).css({"left" : leftPos, "width" :  lineWidth - rightPos - leftPos - circleWidth / 2});
+    var $parent = $(this).parent().parent();
+      datesPos = [];
 
-    //   var leftPercent = ((leftPos + circleWidth / 2)/lineWidth * 100)
-    //   var leftRes = Math.round(max / 100 * leftPercent);
-    //   $(".filter__slider-left-info").html(leftRes);
-    // }
 
-    // if(mousedownRight){
-    //   var pos = event.clientX;
-    //   console.log(lineWidth - leftPos, rightPos)
-    //   if (pos <= leftPoint || pos >= rightPoint || pos <= leftPos) return;
-    //   rightPos = rightPoint - pos - circleWidth / 2;
-    //   $($right).css({"right" : rightPos});
-    //   $($line).css({"left" : leftPos, "width" :  lineWidth - rightPos - leftPos - circleWidth / 2});
+    if ($($parent).hasClass("filter__item_date")){
+      var year = $(".filter__item-text", $parent).html();
+      if ($(this).prop( "checked")){
+        dates.push(year);
+      } else {
+        dates = removeValue(dates, year);
+      }
+    }
+    
+    var datesConst = filter.arr.dateItem;
 
-    //   var rightPercent = (100 - ((rightPos + circleWidth / 2)/lineWidth) * 100);
-    //   var rightRes = Math.round(max / 100 * rightPercent);
-    //   $(".filter__slider-right-info").html(rightRes);
-    // }
+    for (var i = 0; i < datesConst.length; i++){
+      for (var j = 0; j < dates.length; j++){
+        if ( datesConst[i] == dates[j]){
+          datesPos.push(i)
+        }
+      }
+    }
 
-  // })
+    if (datesPos.length <= 0){
+      datesPos = filter.standart;
+    }
+
+    filter.posYears = datesPos;
+
+    var totalPos = getPos(newPosPrice, checks, datesPos);
+    filter.pos = totalPos;
+
+    $(window).trigger("filter:done", filter);
+  })
+
+  function getPos(price, check, years){
+    var arr = [];
+      for (var i = 0; i < price.length; i++){
+        var elemPrice = price[i];
+
+        for (var j = 0; j < check.length; j++){
+          var elemCheck = check[j];
+
+          for (var l = 0; l < years.length; l++){
+            var elemYears = years[l];
+
+            if ( elemPrice == elemCheck && elemPrice == elemYears){
+              arr.push(elemPrice);
+            }
+          }
+        }
+      }
+    return arr;
+  }
+
+  function removeValue(arr, value) {
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] === value) {
+            arr.splice(i, 1);
+            break;
+        }
+    }
+    return arr;
+}
 })
