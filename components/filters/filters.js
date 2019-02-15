@@ -48,9 +48,6 @@ $(function(){
       flag: false
     },
     pos: [0, 1, 2, 3, 4, 5],
-    posPrice: [0, 1, 2, 3, 4, 5],
-    posCheck: [0, 1, 2, 3, 4, 5],
-    posYears: [0, 1, 2, 3, 4, 5],
     standart: [0, 1, 2, 3, 4, 5],
     arr: {
       "nameItem": ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
@@ -61,11 +58,11 @@ $(function(){
     }
   };
 
-  var newPosPrice = filter.posPrice;
+  var newPosPrice = filter.standart;
+  var checks = filter.standart;
+  var datesPos = filter.standart;
   var years = [];
-  var checks = filter.posCheck;
   var dates = [];
-  var datesPos = filter.posYears;
 
   var $check = $("#check");
 
@@ -150,8 +147,6 @@ $(function(){
       var totalPos = getPos(newPosPrice, checks, datesPos);
       filter.pos = totalPos;
 
-      filter.posPrice = newPosPrice;
-
       $(window).trigger( "filter:done", filter);
     }
   })
@@ -174,7 +169,6 @@ $(function(){
     var totalPos = getPos(newPosPrice, checks, datesPos);
     filter.pos = totalPos;
     filter.const.flag = check;
-    filter.posCheck = checks;
 
     $(window).trigger("filter:done", filter);
   })
@@ -207,8 +201,6 @@ $(function(){
     if (datesPos.length <= 0){
       datesPos = filter.standart;
     }
-
-    filter.posYears = datesPos;
 
     var totalPos = getPos(newPosPrice, checks, datesPos);
     filter.pos = totalPos;
