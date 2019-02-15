@@ -32,10 +32,6 @@ $(function(){
     createTable(arr, pos)
   })
 
-
-
-
-
   function filterPrice(arr){
     range = arr;
     min = arr.price.min;
@@ -63,14 +59,36 @@ $(function(){
             $col[i].appendChild(newCell);
             $(newCell).html(qwert[position])
           }
-
         }
-
       }
     }
   }
 
+  $(sortButtonBottom).on("click", function(){ 
+    console.log(filter)
+  });
 
+
+
+
+
+  function sortArrIncrease(arr){
+    var nArr = arr;
+    if (nArr[1] >= 0){
+      return nArr.concat().sort(compareNumbers);
+    } else {
+      return nArr.concat().sort();
+    }
+  }
+
+  function sortArrDescending(arr){
+    var nArr = arr;
+    if (nArr[1] >= 0){
+      return nArr.concat().sort(compareNumbersD);
+    } else {
+      return nArr.concat().sort();
+    }
+  }
 
 
 

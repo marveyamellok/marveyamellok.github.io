@@ -39,39 +39,46 @@ $(function(){
   var min = Number(prices[0]);
   var max = Number(prices[prices.length - 1]);
 
-  var filter = {
-    price: {
-      min: 0,
-      max: max
-    },
-    const: {
-      flag: false
-    },
-    pos: [0, 1, 2, 3, 4, 5],
-    standart: [0, 1, 2, 3, 4, 5],
-    arr: {
-      "nameItem": ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
-      "codeItem": [12345, 456452, 135790, 122233, 3345, 185065],
-      "priceItem": [3500, 8000, 7500, 400, 900, 11700],
-      "gotItem": ["yes", "no", "yes", "yes", "no", "yes"],
-      "dateItem": [2015, 2015, 2018, 2013, 2014, 2015]
-    }
-  };
+  // var filter = {
+  //   price: {
+  //     min: 0,
+  //     max: max
+  //   },
+  //   const: {
+  //     flag: false
+  //   },
+  //   pos: [0, 1, 2, 3, 4, 5],
+  //   standart: [0, 1, 2, 3, 4, 5],
+  //   arr: {
+  //     "nameItem": ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
+  //     "codeItem": [12345, 456452, 135790, 122233, 3345, 185065],
+  //     "priceItem": [3500, 8000, 7500, 400, 900, 11700],
+  //     "gotItem": ["yes", "no", "yes", "yes", "no", "yes"],
+  //     "dateItem": [2015, 2015, 2018, 2013, 2014, 2015]
+  //   }
+  // };
 
-  var newPosPrice = filter.standart;
-  var checks = filter.standart;
-  var datesPos = filter.standart;
+  var filter;
   var years = [];
   var dates = [];
 
+  var newPosPrice;
+  var checks;
+  var datesPos;
+
+  $.getJSON('/components/data.json', function(_data){
+    filter = _data;
+    $(window).trigger( "filter:done", filter );
+
+    newPosPrice = filter.standart;
+    checks = filter.standart;
+    datesPos = filter.standart;
+    filter.price.max = max;
+
+  });
+
   var $check = $("#check");
-
   var $year = $(".filter__item_date");
-
-  var priceArr = {
-    min: 0,
-    max: max
-  };
 
   $($left).on("mousedown", function(){
     mousedownLeft = true;
