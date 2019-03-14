@@ -1,19 +1,19 @@
 mixin table(content, params)
   .table&attributes(attributes)
     .table__header
-      .table__header-item(data-num="0").table__header_text Name
+      .table__header-item(data-id="nameItem").table__header_text Name
         .table__sort-top
         .table__sort-bottom
-      .table__header-item(data-num="1") Code
+      .table__header-item(data-id="codeItem") Code
         .table__sort-top
         .table__sort-bottom
-      .table__header-item(data-num="2") Price
+      .table__header-item(data-id="priceItem") Price
         .table__sort-top
         .table__sort-bottom
-      .table__header-item(data-num="3").table__header_text Have Something
+      .table__header-item(data-id="gotItem").table__header_text Have Something
         .table__sort-top
         .table__sort-bottom
-      .table__header-item(data-num="4") Date
+      .table__header-item(data-id="dateItem") Date
         .table__sort-top
         .table__sort-bottom
     .table__columns

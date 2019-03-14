@@ -1,0 +1,21 @@
+mixin carousel(content, params)
+  .carousel&attributes(attributes)
+    .carousel__block
+      +carousel__item({num: "1"}).carousel__item_pink
+      +carousel__item({num: "2"}).carousel__item_blue.carousel__item_previous
+      +carousel__item({num: "3"}).carousel__item_green.carousel__item_main
+      +carousel__item({num: "4"}).carousel__item_red.carousel__item_next
+      +carousel__item({num: "5"}).carousel__item_orange
+
+
+mixin carousel__item(content, params)
+  .carousel__item(data-num=content.num)&attributes(attributes)
+    - for (i = 0; i < 8; ++i) {
+      +carousel__item-level
+    - }
+
+mixin carousel__item-level(content, params)
+  .carousel__item-level&attributes(attributes)
+      .carousel__item-window
+      .carousel__item-window
+      .carousel__item-window

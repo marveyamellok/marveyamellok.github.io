@@ -65,7 +65,15 @@ $(function(){
   }
 
   $(sortButtonBottom).on("click", function(){ 
-    console.log(filter)
+    var id = $(this).parent().data("id");
+
+    // console.log(filter);
+    var arr = filter.arr[id];
+    var newArr = sortArrIncrease(arr);
+    var oldArr = arr;
+    console.log(oldArr, newArr);
+
+    getNewPos(oldArr, newArr)
   });
 
 
@@ -90,6 +98,19 @@ $(function(){
     }
   }
 
+  function getNewPos(oldArr, newArr){
+    var positionPrice = []
+    for (var i = 0; i < oldArr.length; i++){
+      for (var j = 0; j < newArr.length; j++){
+        if ( oldArr[i] == newArr[j]){
+          positionPrice.push(j);
+          console.log( oldArr[i],newArr[j])
+        }
+      }
+    }
+
+    console.log(positionPrice);
+  }
 
 
 
