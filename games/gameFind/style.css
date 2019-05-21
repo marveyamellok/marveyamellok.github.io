@@ -16,7 +16,7 @@ body{
   z-index: 4;
 }
 
-.table{
+.game .table{
   width: 50vw;
   height: 50vw;
   box-sizing: border-box;
@@ -24,7 +24,7 @@ body{
   background-color: white;
 }
 
-.table__item{
+.game .table__item{
   display: inline-flex;
   vertical-align: top;
   flex-direction: column;
