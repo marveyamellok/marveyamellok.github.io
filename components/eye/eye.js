@@ -84,9 +84,9 @@ $(function(){
         appleNewY = eyeWidth - appleWidth - 5;
       }
 
-      // if ( x < eyeLeft ){
-      //   appleNewX = appleLeft;
-      // }
+      if ( x < eyeLeft ){
+        appleNewX = 5;
+      }
       
       $($apple[i]).css({"left": appleNewX + "px", "top": appleNewY + "px"})
     }
