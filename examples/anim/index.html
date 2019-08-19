@@ -5,6 +5,7 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../styles/styles.css"><script type="text/javascript" src="../../lib/jquery-2.2.4.min.js" defer></script>
+<script type="text/javascript" src="../../components/anim/anim.js" defer></script>
 <script type="text/javascript" src="script.js" defer></script>
 <script src='http://code.jquery.com/jquery-latest.js'></script>
 <script type="text/javascript" src="../../styles/project.js" defer></script>
@@ -21,30 +22,15 @@
       </div>
     </div>
     <div class="page">
-      <div class="lists">
-        <div class="list">
-          <div class="list__header">
-            <div class="list__roll"> </div>
-            <div class="list__delete"></div>
-          </div>
-          <div class="list__top">
-            <div class="list__title"></div>
-            <input class="list__title-input" type="text"/>
-            <button class="list__title-button">Подтвердить название</button>
-          </div>
-          <div class="list__middle">
-            <input class="list__text-input" type="text"/>
-            <button class="list__text-button">Добавить элемент</button>
-          </div>
-          <div class="list__bottom">
-            <div class="list__elem">
-              <label class="list__elem-block">
-                <input class="list__elem-input" type="checkbox"/>
-                <div class="list__elem-text">Элемент списка</div>
-              </label>
-              <div class="list__elem-delete"></div>
-            </div>
-          </div>
+      <div class="anim">
+        <div class="anim__block">
+          <div class="anim__text">Animation</div>
+          <input class="anim__input"/>
+          <div class="anim__text">Number</div>
+          <input class="anim__number"/>
+          <div class="anim__text">Press OK</div>
+          <button class="anim__button">OK</button>
+          <div class="anim__result"></div>
         </div>
       </div>
     </div>
