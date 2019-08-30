@@ -1,5 +1,123 @@
 {
   "test": "test",
+  "header": {
+    "en": [
+      { 
+        "text": "Home",
+        "href": "/"
+      },
+      {
+        "text": "About me",
+        "href": "#"
+      },
+      {
+        "text": "About games",
+        "href": "#"
+      },
+      {
+        "text": "Games",
+        "href": "#",
+        "items":[
+          {
+            "link": "/games/seabattle",
+            "text": "Sea ​​Battle"
+          },
+          {
+            "link": "/games/getsouls",
+            "text": "Souls Collection"
+          },
+          {
+            "link": "/games/gameFind",
+            "text": "Game Finder"
+          }
+        ]
+      },
+      {
+        "text": "JS works",
+        "href": "#",
+        "items":[
+          {
+            "link": "/games/todd",
+            "text": "ToDo List"
+          },
+          {
+            "link": "/games/table",
+            "text": "Table Sort"
+          },
+          {
+            "link": "/games/carousel",
+            "text": "Carousel"
+          },
+          {
+            "link": "/games/anim",
+            "text": "Animation Calculator"
+          },
+          {
+            "link": "/games/balls",
+            "text": "Balls"
+          }
+        ]
+      }
+    ],
+    "ru":[
+      { 
+        "text": "Главная",
+        "href": "/"
+      },
+      {
+        "text": "Инфо",
+        "href": "#"
+      },
+      {
+        "text": "Инфо про игры",
+        "href": "#"
+      },
+      {
+        "text": "Игры",
+        "href": "#",
+        "items":[
+          {
+            "link": "/games/seabattle",
+            "text": "Морсокой бой"
+          },
+          {
+            "link": "/games/getsouls",
+            "text": "Бродилка"
+          },
+          {
+            "link": "/games/gameFind",
+            "text": "Поиск"
+          }
+        ]
+      },
+      {
+        "text": "Работы на JS",
+        "href": "#",
+        "items":[
+          {
+            "link": "/games/todd",
+            "text": "Список"
+          },
+          {
+            "link": "/games/table",
+            "text": "Таблица"
+          },
+          {
+            "link": "/games/carousel",
+            "text": "Карусель"
+          },
+          {
+            "link": "/games/anim",
+            "text": "Калькулятор анимации"
+          },
+          {
+            "link": "/games/balls",
+            "text": "Мачи"
+          }
+        ]
+      }
+    ]
+  },
   "table":{
     "header": [
       "elem_1",
@@ -40,5 +158,11 @@
     "priceItem": [3500, 8000, 7500, 400, 900, 11700],
     "gotItem": ["yes", "no", "yes", "yes", "no", "yes"],
     "dateItem": [2015, 2015, 2018, 2013, 2014, 2015]
+  },
+  "lang": {
+    "default": "en",
+    "arr": [
+      "en", "ru"
+    ]
   }
 }

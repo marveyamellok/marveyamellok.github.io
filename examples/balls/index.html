@@ -5,8 +5,11 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../styles/styles.css"><script type="text/javascript" src="../../lib/jquery-2.2.4.min.js" defer></script>
+<script type="text/javascript" src="../../components/balls/balls.js" defer></script>
 <script type="text/javascript" src="script.js" defer></script>
 <script src='http://code.jquery.com/jquery-latest.js'></script>
+<script type="text/javascript" src="../../styles/project.js" defer></script>
+<script src="js/main.js"></script>
   </head>
   <body>
     <div class="header">
@@ -22,22 +25,22 @@
         </div>
       </div>
     </div>
-    <div class="game">
-      <div class="wrapper"></div>
-      <div class="table"> </div>
-      <input class="start" type="button" value="Start">
-      <div class="timer">
-        <div class="timer__text">
-          <div class="timer__hours">00</div><span> : </span>
-          <div class="timer__minutes">00</div><span> : </span>
-          <div class="timer__seconds">00 </div>
+    <div class="page">
+      <div class="balls">
+        <div class="balls__block">
+          <canvas class="balls__canvas" width="900" height="500" id="balls__canvas"></canvas>
         </div>
       </div>
-      <div class="result">
-        <div class="result__text"></div>
-        <div class="result__OldText"></div>
-      </div>
-      <input class="clear-btn" type="button" value="Clear Best Score">
+      <label class="lang">
+        <input type="checkbox"/>
+        <div class="lang__block">
+          <div class="lang__result">en</div>
+          <div class="lang__items">
+            <div class="lang__item">en</div>
+            <div class="lang__item">ru</div>
+          </div>
+        </div>
+      </label>
     </div>
   </body>
 </html>

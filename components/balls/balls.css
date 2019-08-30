@@ -1,0 +1,6 @@
+.balls {
+  width: 100%;
+  height: calc(100vh - 50px); }
+  .balls__block {
+    width: 100%;
+    height: 100%; }

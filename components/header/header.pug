@@ -1,18 +1,29 @@
 mixin header(content, params)
   .header&attributes(attributes)
     .header__wrapper
-      a(href="/").header__item Home
-      a(href="#").header__item About me
-      a(href="#").header__item About games
-      .header__item Games
+      .header__item 
+        a(href="/").header__item-link Home
+      .header__item
+        a(href="#").header__item-link About me
+      .header__item
+        a(href="#").header__item-link About games
+      .header__item 
+        a(href="#").header__item-link Games
         .header__submenu
           a(href="/games/seabattle").header__submenu-item Sea ​​Battle
           a(href="/games/getsouls").header__submenu-item Souls Collection
           a(href="/games/gameFind").header__submenu-item Game Finder
-      .header__item JS works
+      .header__item 
+        a(href="#").header__item-link JS works
         .header__submenu
           a(href="/examples/todo").header__submenu-item ToDo List
           a(href="/examples/table").header__submenu-item Table Sort
           a(href="/examples/carousel").header__submenu-item Carousel
           a(href="/examples/anim").header__submenu-item Animation Calculator
+          a(href="/examples/balls").header__submenu-item Balls
       block
+
+//- mixin header(content, params)
+//-   .header&attributes(attributes)
+//-     .header__wrapper
+//-       block

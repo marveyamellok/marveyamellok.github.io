@@ -1,0 +1,15 @@
+.lang {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 60px;
+  background: white;
+  text-align: center;
+  font-family: Impact;
+  font-size: 20px; }
+  .lang__block {
+    position: relative;
+    width: 100%; }
+  .lang__result {
+    width: 100%;
+    height: 25px; }

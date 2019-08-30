@@ -1,0 +1,58 @@
+.lang{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 100px;
+  background: white;
+  text-align: center;
+  font-family: Impact;
+  font-size: 20px;
+
+  user-select: none;
+  cursor: pointer;
+
+  input{
+    display: none;
+
+    &:checked ~ .lang__block{
+      .lang__items{
+        height: 90px;
+      }
+    }
+  }
+
+  &__block{
+    position: relative;
+    width: 100%;
+  }
+
+  &__result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+  }
+
+  &__items{
+    width: 100%;
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 0;
+    background: white;
+
+    height: 0;
+    transition: height 0.3s;
+    overflow: hidden;
+  }
+
+  &__item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+  }
+}

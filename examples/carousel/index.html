@@ -9,15 +9,19 @@
 <script type="text/javascript" src="../../styles/styles.css" defer></script>
 <script src='http://code.jquery.com/jquery-latest.js'></script>
 <script type="text/javascript" src="../../styles/project.js" defer></script>
+<script src="js/main.js"></script>
   </head>
   <body>
     <div class="header">
-      <div class="header__wrapper"><a class="header__item" href="/">Home</a><a class="header__item" href="#">About me</a><a class="header__item" href="#">About games</a>
-        <div class="header__item">Games
+      <div class="header__wrapper">
+        <div class="header__item"> <a class="header__item-link" href="/">Home</a></div>
+        <div class="header__item"><a class="header__item-link" href="#">About me</a></div>
+        <div class="header__item"><a class="header__item-link" href="#">About games</a></div>
+        <div class="header__item"> <a class="header__item-link" href="#">Games</a>
           <div class="header__submenu"><a class="header__submenu-item" href="/games/seabattle">Sea ​​Battle</a><a class="header__submenu-item" href="/games/getsouls">Souls Collection</a><a class="header__submenu-item" href="/games/gameFind">Game Finder</a></div>
         </div>
-        <div class="header__item">JS works
-          <div class="header__submenu"><a class="header__submenu-item" href="/examples/todo">ToDo List</a><a class="header__submenu-item" href="/examples/table">Table Sort</a><a class="header__submenu-item" href="/examples/carousel">Carousel</a><a class="header__submenu-item" href="/examples/anim">Animation Calculator</a></div>
+        <div class="header__item"> <a class="header__item-link" href="#">JS works</a>
+          <div class="header__submenu"><a class="header__submenu-item" href="/examples/todo">ToDo List</a><a class="header__submenu-item" href="/examples/table">Table Sort</a><a class="header__submenu-item" href="/examples/carousel">Carousel</a><a class="header__submenu-item" href="/examples/anim">Animation Calculator</a><a class="header__submenu-item" href="/examples/balls">Balls</a></div>
         </div>
       </div>
     </div>
@@ -362,6 +366,16 @@
           </div>
         </div>
       </div>
+      <label class="lang">
+        <input type="checkbox"/>
+        <div class="lang__block">
+          <div class="lang__result">en</div>
+          <div class="lang__items">
+            <div class="lang__item">en</div>
+            <div class="lang__item">ru</div>
+          </div>
+        </div>
+      </label>
     </div>
   </body>
 </html>
