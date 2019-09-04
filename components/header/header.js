@@ -1,19 +1,22 @@
 $(function(){
   var data;
   var lang;
+  var localLang;
 
   $(window).on("main:ready", function( e, _data ){
     data = _data;
-    // createHeader(data);
-    // headerContent(data);
+
+    if (localStorage.getItem("lang") !=undefined){
+      data.lang.default = localStorage.getItem("lang");
+      headerContent(data);
+    }
+
   })
 
   $(window).on("lang:changed", function( e, _data ){
     data = _data;
-    // createHeader(data);
     headerContent(data);
   })
-
 });
 
 
@@ -23,6 +26,7 @@ $(function(){
 function createHeader(data){
   var $headerW = $(".header__wrapper");
   var lang = data.lang.default;
+  localStorage.setItem("lang", lang);
   var header = data.header[lang];
   $($headerW).text("");
 
@@ -47,6 +51,7 @@ function createHeader(data){
 function headerContent(data){
   var $items = $(".header__item");
   var lang = data.lang.default;
+  localStorage.setItem("lang", lang);
   var header = data.header[lang];
   for (var i = 0; i < header.length; i++){
     $(".header__item-link", $items[i]).text(header[i].text);

@@ -10,10 +10,13 @@ $(function(){
 
   $($langItem).on("click", function(){
     lang = $(this).text();
-    $($lang).text(lang);
 
+
+    $($lang).text(lang);
     data.lang.default = lang;
 
     $(window).trigger( "lang:changed", data );
   })
 })
+
+  

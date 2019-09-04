@@ -14,12 +14,8 @@ $(function(){
       });
   }
 
-  require("./components/header/header.js");
-  require("./components/lang/lang.js");
-});
-
-$.getJSON('components/data.json', function(_data){
-  data = _data;
-  $(window).trigger( "main:ready", data );
+  require("/components/lang/lang.js");
+  require("/components/header/header.js");
+  require("/components/main.js");
 });
 
