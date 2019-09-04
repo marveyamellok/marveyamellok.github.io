@@ -55,6 +55,10 @@
           {
             "link": "/games/balls",
             "text": "Balls"
+          },
+          {
+            "link": "/games/light",
+            "text": "Light"
           }
         ]
       }
@@ -113,6 +117,10 @@
           {
             "link": "/games/balls",
             "text": "Мачи"
+          },
+          {
+            "link": "/games/balls",
+            "text": "Свет"
           }
         ]
       }

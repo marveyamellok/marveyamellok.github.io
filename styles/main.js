@@ -16,6 +16,7 @@ $(function(){
 
   require("/components/lang/lang.js");
   require("/components/header/header.js");
+  require("/components/light/light.js");
   require("/components/main.js");
 });
 
