@@ -6,19 +6,22 @@ $(function(){
   var centerX = width / 2;
   var centerY = height / 2;
   var $light = $(".light__block-light");
-
-
-  // function coords(event){
-  //   appleX = $($apple).position().left;
-  //   appleY = $($apple).position().top;
-  // }
+  var $switch = $(".light__switch");
 
   window.onmousemove = function(event){
     x = event.pageX;
     y = event.pageY;
-    console.log(width, height);
-
     $($light).css({"transform": "translate(" + (x - centerX) + "px, " + (y - centerY) + "px)"})
   }
+
+  $($switch).on("click", function(){
+    if ($(this).prop("checked")){
+      $($light).css({"opacity": "0"})
+    } else {
+      $($light).css({"opacity": "1"})
+    }
+  })
+
+
 
 })
