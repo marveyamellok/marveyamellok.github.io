@@ -12,6 +12,7 @@
     background: url("../images/light/fon.jpg") no-repeat center / cover;
 
     transition: opacity 0.4s;
+    z-index: -1;
   }
 
   &__block{

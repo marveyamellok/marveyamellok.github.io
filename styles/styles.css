@@ -1473,7 +1473,8 @@ template {
     background: url("../images/light/fon.jpg") no-repeat center/cover;
     -webkit-transition: opacity 0.4s;
     -o-transition: opacity 0.4s;
-    transition: opacity 0.4s; }
+    transition: opacity 0.4s;
+    z-index: -1; }
   .light__block {
     position: relative;
     width: 100%;
