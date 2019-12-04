@@ -29,6 +29,10 @@
           {
             "link": "/games/gameFind",
             "text": "Game Finder"
+          },
+          {
+            "link": "/games/row",
+            "text": "Member"
           }
         ]
       },
@@ -82,7 +86,7 @@
         "items":[
           {
             "link": "/games/seabattle",
-            "text": "Морсокой бой"
+            "text": "Морской бой"
           },
           {
             "link": "/games/getsouls",
@@ -91,6 +95,10 @@
           {
             "link": "/games/gameFind",
             "text": "Поиск"
+          },
+          {
+            "link": "/games/row",
+            "text": "Запоминалки"
           }
         ]
       },
@@ -172,5 +180,23 @@
     "arr": [
       "en", "ru"
     ]
+  },
+  "TableParams": {
+    "price": {
+      "min": 0,
+      "max": 11700
+    },
+    "const": {
+      "flag": "false"
+    },
+    "pos": [0, 1, 2, 3, 4, 5],
+    "standart": [0, 1, 2, 3, 4, 5],
+    "arr": {
+      "nameItem": ["Name_1", "Name_2", "Name_3", "Name_4", "Name_5", "Name_6"],
+      "codeItem": [12345, 456452, 135790, 122233, 3345, 185065],
+      "priceItem": [3500, 8000, 7500, 400, 900, 11700],
+      "gotItem": ["yes", "no", "yes", "yes", "no", "yes"],
+      "dateItem": [2015, 2015, 2018, 2013, 2014, 2015]
+    }
   }
 }

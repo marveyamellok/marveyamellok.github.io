@@ -1,0 +1,23 @@
+mixin row(content, params)
+  .row&attributes(attributes)
+    //- .row__block
+      canvas(width="600" height="600" id="row__canvas").row__canvas
+    //- .row__block
+    //-   -let i = 0;
+    //-     while i++ < 100
+    //-       +row__item({"num": i})
+    .row__modal
+      .row__modal-text YOU WIIIN!!!
+      .row__modal-button Again
+    .row__block
+      -let i = 0;
+        while i++ < 30
+          +row__item({"num": i})
+
+
+
+
+mixin row__item(content, params)
+  .row__item
+    .row__item-forward
+    .row__item-back 10

@@ -1,0 +1,224 @@
+.row{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding-top: 50px;
+
+  // &__block{
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-wrap: wrap;
+  //   // width: 100%;
+  //   // height: 100%;
+  //   width: 40vw;
+  //   height: 40vw;
+  //   border: 1px solid blue;
+  //   border-bottom: none;
+  //   box-sizing: border-box;
+  // }
+
+  // &__canvas{
+  //   border: 2px solid blue;
+  // }
+
+  // &__line{
+  //   height: 10%;
+  //   width: 100%;
+  //   font-size: 0;
+  //   // border-bottom: 2px solid blue;
+  // }
+
+  // &__item{
+  //   display: inline-block;
+  //   vertical-align: top;
+  //   width: 10%;
+  //   height: 10%;
+  //   border: 2px solid blue;
+  //   box-sizing: border-box;
+  //   cursor: pointer;
+  //   transition: background-color 0.3s;
+
+  //   &_enemy{
+  //     background-color: red;
+  //     cursor: pointer;
+  //   }
+
+  //   &_you{
+  //     background-color: green;
+  //   }
+  // }
+
+  // &__item{
+  //   position: absolute;
+
+  //   &_1{
+  //     top: 80vh;
+  //     left: 124vh;
+  //     width: 15vh;
+  //     height: 4vh;
+  //     background-color: red;
+  //   }
+
+  //   &_2{
+  //     top: 60vh;
+  //     left: 54vh;
+  //     width: 31vh;
+  //     height: 15vh;
+  //     background-color: blue;
+  //   }
+
+  //   &_3{
+  //     top: 30vh;
+  //     left: 104vh;
+  //     width: 20vh;
+  //     height: 28vh;
+  //     background-color: green;
+  //   }
+
+  //   &_4{
+  //     top: 30vh;
+  //     left: 44vh;
+  //     width: 37vh;
+  //     height: 12vh;
+  //     background-color: orange;
+  //   }
+
+  //   &_5{
+  //     top: 20vh;
+  //     left: 4vh;
+  //     width: 19vh;
+  //     height: 10vh;
+  //     background-color: purple;
+  //   }
+  // }
+
+  &__block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    // width: 100%;
+    // height: 100%;
+    width: 50vh;
+    height: 60vh;
+    // border: 1px solid blue;
+    border-bottom: none;
+    box-sizing: border-box;
+
+    &_inactive{
+      pointer-events: none;
+    }
+  }
+
+  &__item{
+    position: relative;
+    width: 20%;
+    height: 16.7%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    &_choose{
+      .row__item-forward{
+        opacity: 0;
+      }
+      .row__item-back{
+        transform: scale(1.2);
+        z-index: 3;
+      }
+    }
+
+    &_right{
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__item-back,
+  &__item-forward{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+
+  &__item-back{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family:  Impact;
+    font-size: 5vh;
+    color: #5d5da5;
+    background-color: #95c7a0;
+    z-index: 1;
+    
+  }
+
+  &__item-forward{
+    background-color: #b4d26b;
+    z-index: 2;
+  }
+
+  &__modal{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vh;
+    height: 20vh;
+    background: #FFC107;
+    box-sizing: border-box;
+    border: 0.6vh solid #fb8002;
+    font-family:  Impact;
+    z-index: 8;
+    color: #fb8002;
+    transition: opacity 0.3s, transform 0.3s;
+
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+
+    &_visible{
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+    }
+  }
+
+  &__modal-text{
+    margin-bottom: 1vh;
+    font-size: 5vh;
+
+  }
+
+  &__modal-button{
+    padding:  0.6vh 2vh;
+    border: 0.6vh solid #fb8002;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+
+    &:hover{
+      background-color: white;
+    }
+
+    &:active{
+      transform: scale(0.9);
+    }
+
+  }
+    
+}
