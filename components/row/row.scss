@@ -106,7 +106,7 @@
     // width: 100%;
     // height: 100%;
     width: 50vh;
-    height: 60vh;
+    // height: 60vh;
     // border: 1px solid blue;
     border-bottom: none;
     box-sizing: border-box;
@@ -118,8 +118,8 @@
 
   &__item{
     position: relative;
-    width: 20%;
-    height: 16.7%;
+    width: 10vh;
+    height: 12vh;
     border: 2px solid white;
     box-sizing: border-box;
     user-select: none;
@@ -127,6 +127,7 @@
     transition: opacity 0.3s;
 
     &_choose{
+      pointer-events: none;
       .row__item-forward{
         opacity: 0;
       }

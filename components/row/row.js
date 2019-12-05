@@ -28,7 +28,7 @@ $(function(){
       var $this = this;
       var card_num = $(".row__item-back", $this).text();
       card.push(card_num);
-      $cards.push($this);
+      cards.push($this);
       $($this).addClass("row__item_choose");
 
       if (card.length == 2){
@@ -37,15 +37,14 @@ $(function(){
           points+=1;
           setTimeout(function(){
             for (var i = 0; i < $cards.length; i++){
-              $($cards[i]).removeClass("row__item_choose");
-              $($cards[i]).addClass("row__item_right");
+              $(cards[i]).removeClass("row__item_choose").addClass("row__item_right");
             }
-
             if (points == max){
               $(".row__modal").addClass("row__modal_visible");
             }
           }, 1000)
         } else {
+          console.log("no")
           setTimeout(function(){
             for (var i = 0; i < $cards.length; i++){
               $(cards[i]).removeClass("row__item_choose");
